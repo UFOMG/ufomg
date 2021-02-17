@@ -1,6 +1,7 @@
 import React from "react";
 import "./MainPage.scss";
 import alienHead from "../../assets/alien-head.jpg";
+import { Link } from "react-router-dom";
 
 const MainPage = () => {
   return (
@@ -8,9 +9,12 @@ const MainPage = () => {
       <div>
         <img src={alienHead} alt="alien head" />
         <div>
-          <button>Sightings</button>
-          <button>Report</button>
-          <button>Something Here</button>
+          <Link to="/sightings-map">
+            <button>Sightings</button>
+          </Link>
+          <Link to="/report-form">
+            <button>Report Sighting</button>
+          </Link>
         </div>
       </div>
     </main>
