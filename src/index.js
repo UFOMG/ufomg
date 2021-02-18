@@ -23,8 +23,10 @@ ReactDOM.render(
 // sighting:
 // {
 //   name: '',
-//   location: lat/long = '',
+//   lat: '',
+//   long: '',
 //   description: '',
 //   eventType?: ''
+//   image: ''
 //   comments?: [{name: '', comment: ''}, {name: '', comment: ''}]
 // }

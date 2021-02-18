@@ -8,23 +8,18 @@ const ReportForm = () => {
 
   const handleNameChange = (event) => {
     setName(event.target.value)
-    console.log(event.target.value);
-
   }
+
   const handleLocationChange = (event) => {
     setLocation(event.target.value)
-    console.log(event.target.value);
-
   }
+
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value)
-    console.log(event.target.value);
-
   }
+  
   const handleEncounterChange = (event) => {
     setEncounterType(event.target.value)
-    console.log(event.target.value);
-
   }
 
   return (
