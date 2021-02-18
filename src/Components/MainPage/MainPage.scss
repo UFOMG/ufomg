@@ -1,0 +1,44 @@
+.main {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.alien-logo {
+  height: 50vh;
+  width: 35vw;
+  margin-bottom: 30%;
+
+  -webkit-animation: fadein 5s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 5s; /* Firefox < 16 */
+        -ms-animation: fadein 5s; /* Internet Explorer */
+         -o-animation: fadein 5s; /* Opera < 12.1 */
+            animation: fadein 5s;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+
+button {
+  height: 50px;
+  width: 117px;
+  margin: margin-right;
+  margin-right: 20px;
+  background-color: #6930c3;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.btns {
+  display: flex;
+}
