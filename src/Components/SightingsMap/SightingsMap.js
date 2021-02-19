@@ -44,7 +44,24 @@ const SightingsMap = () => {
       onUnmount={onUnmount}
     >
       {/* Child components, such as markers, info windows, etc. */}
-      
+      <Marker
+        position={center}
+        onClick={() => {
+          setSelectedCenter(center);
+        }}
+      />
+      {selectedCenter && (
+        <InfoWindow
+          onCloseClick={() => {
+            setSelectedCenter(null);
+          }}
+          position={center}
+        >
+          <div>
+            <h3>Alien Stuff</h3>
+          </div>
+        </InfoWindow>
+      )}
       <></>
     </GoogleMap>
   ) : (
