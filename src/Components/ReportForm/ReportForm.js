@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './ReportForm.scss'
 
 const ReportForm = () => {
   const [encounterType, setEncounterType] = useState(null);
@@ -28,47 +29,50 @@ const ReportForm = () => {
   }
 
   return (
-    <form>
-      <label>
-        Name
-        <input
-          name="name"
-          value={name}
-          onChange={handleNameChange}
-          type="text"
-          placeholder="Name or remain anonymous"
-        />
-      </label>
-      <label>
-        Location
-        {/* locate me functionality
-        or convert city/state to lat/long */}
-        <input
-          name="location"
-          value={location}
-          onChange={handleLocationChange}
-          type="text"
-          placeholder="Location"
-        />
-      </label>
-      <label>
-        Description
-        <input
-          name="description"
-          value={description}
-          onChange={handleDescriptionChange}
-          type="textarea"
-          placeholder="What happened?"
-        />
-      </label>
-      <label>
-        Encounter Type
-        <select value={encounterType} onChange={handleEncounterChange}>
-          <option value="sighting">Sighting</option>
-          <option value="encounter">Encounter</option>
-          <option value="abduction">Abduction</option>
-        </select>
-      </label>
+    <form className="form">
+      <div className="form-inputs">
+        <label>
+          Name
+          <input
+            name="name"
+            value={name}
+            onChange={handleNameChange}
+            type="text"
+            placeholder="Name or remain anonymous"
+          />
+        </label>
+        <label>
+          Location
+          {/* locate me functionality
+          or convert city/state to lat/long */}
+          <input
+            name="location"
+            value={location}
+            onChange={handleLocationChange}
+            type="text"
+            placeholder="Location"
+          />
+        </label>
+        <label>
+          Description
+          <input
+            name="description"
+            value={description}
+            onChange={handleDescriptionChange}
+            type="textarea"
+            placeholder="What happened?"
+          />
+        </label>
+        <label>
+          Encounter Type
+          <select value={encounterType} onChange={handleEncounterChange}>
+            <option value="sighting">Sighting</option>
+            <option value="encounter">Encounter</option>
+            <option value="abduction">Abduction</option>
+          </select>
+        </label>
+        <button className="submit-btn">submit</button>
+      </div>
     </form>
   );
 };
