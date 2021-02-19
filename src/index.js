@@ -1,12 +1,32 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./Components/App/App";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import { BrowserRouter } from "react-router-dom";
+import rootReducer from "./reducers";
+import App from "./Components/App/App";
+import "./index.css";
+
+const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
-  <BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
       <App />
-  </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
+
+// state: array of sightings
+// sighting:
+// {
+//   name: '',
+//   lat: '',
+//   long: '',
+//   description: '',
+//   eventType?: ''
+//   image: ''
+//   comments?: [{name: '', comment: ''}, {name: '', comment: ''}]
+// }
