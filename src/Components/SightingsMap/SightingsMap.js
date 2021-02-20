@@ -1,68 +1,73 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
+import { mockSightings } from "../../mockdata";
 
 const containerStyle = {
-  width: "400px",
-  height: "400px",
+  width: "1500px",
+  height: "800px",
 };
 
 const center = {
-  lat: 33.394,
-  lng: -104.525
+  lat: 39.8283,
+  lng: -98.5795,
 };
 
 const SightingsMap = () => {
+  const [selectedCenter, setSelectedCenter] = useState(null);
+  const [selectedSite, setSelectedSite] = useState(null);
+
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: `${process.env.REACT_APP_API_KEY}`,
   });
 
-  const [map, setMap] = useState(null);
-  const [selectedCenter, setSelectedCenter] = useState(null);
-
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map);
-  }, []);
-
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null);
-  }, []);
+  const generateMarkers = () => {
+    return mockSightings.map((sighting) => {
+      const position = {
+        lat: parseInt(sighting.lat),
+        lng: parseInt(sighting.lng),
+      };
+      return (
+        <Marker
+          position={position}
+          onMouseDown={() => {
+            setSelectedSite(sighting);
+          }}
+          onMouseUp={() => {
+            setSelectedCenter(position);
+          }}
+        />
+      );
+    });
+  };
 
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      {/* Child components, such as markers, info windows, etc. */}
-      <Marker
-        position={center}
-        onClick={() => {
-          setSelectedCenter(center);
-        }}
-      />
+    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={5}>
+
+      {generateMarkers()}
+
       {selectedCenter && (
         <InfoWindow
           onCloseClick={() => {
             setSelectedCenter(null);
           }}
-          position={center}
+          position={selectedCenter}
         >
           <div>
-            <h3>Alien Stuff</h3>
+            <div>
+              <p>{selectedSite.name ? selectedSite.name : "anonymous"}</p>
+              <p>{selectedSite.description}</p>
+              <p>{selectedSite.eventType}</p>
+            </div>
+            <img src={selectedSite.image} alt={`alien ${selectedSite.eventType}`} />
           </div>
         </InfoWindow>
       )}
-      <></>
     </GoogleMap>
   ) : (
     <></>
