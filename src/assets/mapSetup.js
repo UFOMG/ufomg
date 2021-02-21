@@ -1,6 +1,6 @@
 export const containerStyle = {
-  width: "100vw",
-  height: "100vh",
+  width: "90vw",
+  height: "90vh",
 };
 
 export const mapCenter = {
