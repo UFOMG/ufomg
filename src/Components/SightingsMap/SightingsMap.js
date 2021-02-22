@@ -11,8 +11,10 @@ import alien from "../../assets/alienmarker.png";
 import lights from "../../assets/skylights.png";
 import { containerStyle, mapCenter, customMap } from "../../assets/mapSetup";
 import { mockSightings } from "../../mockdata";
+import { connect } from "react-redux";
 
-const SightingsMap = () => {
+const SightingsMap = (props) => {
+  console.log(props.sightings.sightings);
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [selectedSite, setSelectedSite] = useState(null);
 
@@ -98,4 +100,10 @@ const SightingsMap = () => {
   );
 };
 
-export default SightingsMap;
+const mapStateToProps = (state) => {
+  return {
+    sightings: state.sightingsReducer,
+  };
+};
+
+export default connect(mapStateToProps)(SightingsMap);
