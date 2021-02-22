@@ -1,10 +1,11 @@
-export const apiCall = async () => {
-  const sightingsResponse = await fetch("localhost:5000/api/v1/reports");
-  if (sightingsResponse.status >= 200 && sightingsResponse.status <= 299) {
-    const responseJson = await sightingsResponse.json();
-    return responseJson;
-  } else {
-    console.log(`Error! Code: ${sightingsResponse}`);
-    return sightingsResponse.status;
-  }
+export const apiCall = () => {
+  return fetch("http://localhost:5000/api/v1/reports")
+    .then((response) => {
+      if (response.status >= 200 && response.status <= 299) {
+        return response.json();
+      } else {
+        console.log(`Error! Code: ${response}`);
+        return response.status;
+      }
+    })
 };
