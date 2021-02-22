@@ -10,11 +10,9 @@ import ufo from "../../assets/ufobeam.png";
 import alien from "../../assets/alienmarker.png";
 import lights from "../../assets/skylights.png";
 import { containerStyle, mapCenter, customMap } from "../../assets/mapSetup";
-import { mockSightings } from "../../mockdata";
 import { connect } from "react-redux";
 
-const SightingsMap = (props) => {
-  console.log(props.sightings.sightings);
+const SightingsMap = ({ sightings }) => {
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [selectedSite, setSelectedSite] = useState(null);
 
@@ -37,17 +35,17 @@ const SightingsMap = (props) => {
   };
 
   const generateMarkers = () => {
-    return mockSightings.map((sighting) => {
+    return sightings.sightings.map((sighting) => {
       const position = {
         lat: parseInt(sighting.lat),
-        lng: parseInt(sighting.lng),
+        lng: parseInt(sighting.long),
       };
 
       return (
         <Marker
           className="test"
           icon={{
-            url: generateIconType(sighting.eventType),
+            url: generateIconType(sighting.event_type),
             scaledSize: new window.google.maps.Size(50, 50),
           }}
           position={position}
@@ -82,13 +80,13 @@ const SightingsMap = (props) => {
             <div>
               <p>{selectedSite.name ? selectedSite.name : "anonymous"}</p>
               <p>{selectedSite.description}</p>
-              <p>{selectedSite.eventType}</p>
+              <p>{selectedSite.event_type}</p>
             </div>
             {selectedSite.image && (
               <img
                 className="site-image"
                 src={selectedSite.image}
-                alt={`alien ${selectedSite.eventType}`}
+                alt={`alien ${selectedSite.event_type}`}
               />
             )}
           </div>
