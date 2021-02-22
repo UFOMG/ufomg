@@ -1,0 +1,179 @@
+//-----SCSS Colors--------
+$primary: #013054;
+$secondary: #93eb91;
+$white: #fff;
+$black: black;
+
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../../assets/star-bg.jpg')
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  height: 650px;
+  width: 400px;
+  justify-content: space-evenly;
+  background-color: #4D769A;
+  align-items: center;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formPhoto {
+  height: 650px;
+  width: 500px;
+}
+//--------------Input fields-----------
+
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  width: 50%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $black;
+  outline: 0;
+  font-size: 1.3rem;
+  color: $white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: $black;
+}
+
+.form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $primary;
+    font-weight:700;    
+  }
+  padding-bottom: 6px;  
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $primary,$secondary);
+  border-image-slice: 1;
+}
+/* reset input */
+.form__field{
+  &:required,&:invalid { box-shadow:none; }
+}
+/* demo */
+body {
+  font-family: 'Poppins', sans-serif; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  background-color:#222222;
+}
+
+
+//-----------------button ------------
+
+
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+body {
+  .container,
+  .button,
+  .submit,
+  .button span {
+    position: absolute;
+  }
+  .container {
+    position: relative;
+    display: flex;
+    width: 170px;
+
+    a:hover {
+      .submit {
+        bottom: 0px;
+        transition: all 1s ease-in-out;
+      }
+      .button {
+        transition: all 1s ease-in-out;
+      }
+    }
+      .submit {
+        left: 55px;
+        bottom: -59px;
+        transition: all 1s ease-in-out;
+
+      }
+    
+  
+    .button {
+      width: 171px;
+      height: 65px;
+      background: black;
+      border-radius: 2px;
+      z-index: 3;
+      border: black;
+      transition: all 3s ease-in-out;
+      display: flex;
+      justify-content: center;
+      span {
+        text-align: center;
+        font-size: 35px;
+        line-height: 70px;
+        margin: 0 auto;
+        transition: all 0.3s ease-in-out;
+        color: white;
+      }
+    }
+  }
+} 
+.ufoIcon {
+  width: 72px;
+  width: 60px;
+}
+
+
+//----------------drop down menu------------
+
+.drop-down {
+  padding: 5px 10px;
+  color: #fff;
+  text-align: center;
+  background: #000;
+  height: 36px;
+  display: block;
+}
