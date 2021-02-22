@@ -5,12 +5,6 @@ import { Link } from "react-router-dom";
 
 const MainPage = () => {
   return (
-<<<<<<< Updated upstream
-    <main>
-      <div>
-        <img src={alienHead} alt="alien head" />
-        <div>
-=======
     <main className="main">
       <div className="main-content">
         <div id="app">
@@ -20,7 +14,6 @@ const MainPage = () => {
         </div>
         <img src={alienHead} alt="alien head" className="alien-logo"/>
         <div className="btns">
->>>>>>> Stashed changes
           <Link to="/sightings-map">
             <button className="main-btns">Sightings</button>
           </Link>
