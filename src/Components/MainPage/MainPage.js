@@ -1,7 +1,8 @@
 import React from "react";
 import "./MainPage.scss";
-import alienHead from "../../assets/alien-outline.png";
+import ufoHover from '../../assets/ufo.png'
 import { Link } from "react-router-dom";
+
 
 const MainPage = () => {
   return (
@@ -12,14 +13,32 @@ const MainPage = () => {
             <h1 className="glitch" data-text="UFOMG">UFOMG</h1>
           </div>
         </div>
-        <img src={alienHead} alt="alien head" className="alien-logo"/>
         <div className="btn-container">
-          <Link to="/sightings-map">
+            <div className="container">
+              <a target="_blank">
+                <div className="button mainBtns">
+                  <span>Sightings</span>
+                </div>
+                <img src={ufoHover} className='submit ufoIcon'/>
+              </a>
+            </div>
+              <div className="container">
+                <a target="_blank">
+                  <div className="button mainBtns">
+                    <span>Report Sighting</span>
+                  </div>
+                  <img src={ufoHover} className='submit ufoIcon'/>
+                </a>
+              </div>
+          {/* <Link to="/sightings-map">
             <button className="main-btns">Sightings</button>
           </Link>
           <Link to="/report-form">
             <button className="main-btns">Report Sighting</button>
-          </Link>
+          </Link> */}
+{/* 
+          I was unable to get the link element to work with the home page
+          buttons so I went ahead and commented it out so that you could look over it */}
         </div>
       </div>
     </main>
