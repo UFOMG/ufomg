@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./MainPage.scss";
 import alienHead from "../../assets/alien-head.jpg";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import fetchSightingsAction from "../../api";
+import {
+  getSightings,
+  getSightingsError,
+  getSightingsPending,
+} from "../../reducers/sightings";
 
-const MainPage = () => {
+const MainPage = (props) => {
+  useEffect(() => {
+    const { fetchSightings } = props;
+    fetchSightings();
+  });
+
   return (
     <main className="main">
       <div className="main-content">
@@ -26,4 +39,18 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+const mapStateToProps = (state) => ({
+  error: getSightingsError(state),
+  sightings: getSightings(state),
+  pending: getSightingsPending(state),
+});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      fetchSightings: fetchSightingsAction,
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
