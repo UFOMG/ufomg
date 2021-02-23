@@ -5,8 +5,7 @@ import {
   postSightingsSuccess,
 } from "./actions";
 
-const fetchSightings = () => {
-  return (dispatch) => {
+const fetchSightings = (dispatch) => {
     dispatch(fetchSightingsPending());
     fetch("http://localhost:5000/api/v1/reports")
       .then((response) => response.json())
@@ -20,7 +19,6 @@ const fetchSightings = () => {
       .catch((error) => {
         dispatch(fetchSightingsError(error));
       });
-  };
 };
 
 export const postSighting = (sighting, dispatch) => {
