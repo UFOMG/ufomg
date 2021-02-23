@@ -13,7 +13,7 @@ const MainPage = () => {
           </div>
         </div>
         <img src={alienHead} alt="alien head" className="alien-logo"/>
-        <div className="btns">
+        <div className="btn-container">
           <Link to="/sightings-map">
             <button className="main-btns">Sightings</button>
           </Link>

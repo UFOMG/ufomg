@@ -28,28 +28,27 @@
   place-items: center;
 }
 
-button {
-  .main-btns {
-    height: 50px;
-    width: 117px;
-    margin: margin-right;
-    margin-right: 20px;
-    background-color: #6930c3;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    font-family: monospace;
-    font-weight: bold;
-  }
-  .btns {
-    display: flex;
-  }
+.main-btns {
+  height: 50px;
+  width: 117px;
+  margin: margin-right;
+  margin-right: 20px;
+  background-color: #6930c3;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-family: monospace;
+  font-weight: bold;
 }
+.btn-container {
+  display: flex;
+}
+
 
 h1 {
 	margin: 0;
 }
-
+//------------glitch styling---------
 #app {
 	width: 100%;
 	margin: 0;
@@ -123,4 +122,5 @@ h1 {
       transform: skew((random(10) - 5) + deg);
     }
   }
+}
 }
