@@ -10,11 +10,13 @@ import ufo from "../../assets/ufobeam.png";
 import alien from "../../assets/alienmarker.png";
 import lights from "../../assets/skylights.png";
 import { containerStyle, mapCenter, customMap } from "../../assets/mapSetup";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-const SightingsMap = ({ sightings }) => {
+const SightingsMap = () => {
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [selectedSite, setSelectedSite] = useState(null);
+
+  const sightings = useSelector(state => state.sightingsReducer)
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -35,7 +37,7 @@ const SightingsMap = ({ sightings }) => {
   };
 
   const generateMarkers = () => {
-    return sightings.sightings.map((sighting) => {
+    return sightings.sightings.map((sighting, index) => {
       const position = {
         lat: parseInt(sighting.lat),
         lng: parseInt(sighting.long),
@@ -43,7 +45,7 @@ const SightingsMap = ({ sightings }) => {
 
       return (
         <Marker
-          className="test"
+          key={index}
           icon={{
             url: generateIconType(sighting.event_type),
             scaledSize: new window.google.maps.Size(50, 50),
@@ -98,10 +100,4 @@ const SightingsMap = ({ sightings }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    sightings: state.sightingsReducer,
-  };
-};
-
-export default connect(mapStateToProps)(SightingsMap);
+export default SightingsMap
