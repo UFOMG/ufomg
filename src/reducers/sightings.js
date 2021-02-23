@@ -5,7 +5,7 @@ import {
   POST_SIGHTINGS_SUCCESS,
 } from "../actions";
 
-const initialState = {
+export const initialState = {
   pending: false,
   sightings: [],
   error: null,
