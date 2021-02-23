@@ -17,11 +17,15 @@ $black: black;
 .form-inputs {
   display: flex;
   flex-direction: column;
-  height: 650px;
+  height: 700px;
   width: 400px;
   justify-content: space-evenly;
   background-color: #4D769A;
   align-items: center;
+  border-radius: 5px;
+  box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
+  -webkit-box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
+  -moz-box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
 }
 
 label {
@@ -31,8 +35,12 @@ label {
 }
 
 .formPhoto {
-  height: 650px;
-  width: 500px;
+  height: 700px;
+  width: 500px; 
+  border-radius: 5px;
+  box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
+  -webkit-box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
+  -moz-box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
 }
 //--------------Input fields-----------
 
