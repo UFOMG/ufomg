@@ -126,10 +126,11 @@ body {
     a:hover {
       .submit {
         bottom: 0px;
-        transition: all 1s ease-in-out;
+        transition: all 1.5s ease-in-out;
       }
       .button {
-        transition: all 1s ease-in-out;
+        transition: all 1.5s ease-in-out;
+        box-shadow: 0px 0px 38px 13px #1ECE39;
       }
     }
       .submit {
