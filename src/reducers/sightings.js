@@ -39,8 +39,3 @@ export const sightingsReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export const getSightings = (state) => state.sightings;
-export const getSightingsPending = (state) => state.pending;
-export const getSightingsError = (state) => state.error;
-export const addSighting = (state) => state.sightings;
