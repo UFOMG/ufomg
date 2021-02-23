@@ -35,7 +35,7 @@ const SightingsMap = ({ sightings }) => {
   };
 
   const generateMarkers = () => {
-    return sightings.sightings.map((sighting) => {
+    return sightings.sightings.map((sighting, index) => {
       const position = {
         lat: parseInt(sighting.lat),
         lng: parseInt(sighting.long),
@@ -43,6 +43,7 @@ const SightingsMap = ({ sightings }) => {
 
       return (
         <Marker
+          key={index}
           className="test"
           icon={{
             url: generateIconType(sighting.event_type),
