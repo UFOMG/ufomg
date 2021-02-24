@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import "./MainPage.scss";
-import alienHead from "../../assets/alien-head.jpg";
+import ufoHover from '../../assets/ufo.png'
 import { Link } from "react-router-dom";
 import fetchSightings from "../../api";
 import { useDispatch } from "react-redux";
+
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -22,14 +23,23 @@ const MainPage = () => {
             </h1>
           </div>
         </div>
-        <img src={alienHead} alt="alien head" className="alien-logo" />
-        <div className="btns">
-          <Link to="/sightings-map">
-            <button className="main-btns">Sightings</button>
-          </Link>
-          <Link to="/report-form">
-            <button className="main-btns">Report Sighting</button>
-          </Link>
+        <div className="btn-container">
+            <div className="container">
+              <Link to="/sightings-map">
+                <div className="button mainBtns">
+                  <span>Sightings</span>
+                </div>
+                <img src={ufoHover} className='submit ufoIcon'/>
+              </Link>
+            </div>
+            <div className="container">
+              <Link to="/report-form">
+                <div className="button mainBtns">
+                  <span>Report Sighting</span>
+                </div>
+                <img src={ufoHover} className='submit ufoIcon'/>
+              </Link>
+            </div>
         </div>
       </div>
     </main>

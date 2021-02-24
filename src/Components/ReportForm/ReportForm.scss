@@ -17,11 +17,15 @@ $black: black;
 .form-inputs {
   display: flex;
   flex-direction: column;
-  height: 650px;
+  height: 700px;
   width: 400px;
   justify-content: space-evenly;
   background-color: #4D769A;
   align-items: center;
+  border-radius: 5px;
+  box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
+  -webkit-box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
+  -moz-box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
 }
 
 label {
@@ -31,8 +35,12 @@ label {
 }
 
 .formPhoto {
-  height: 650px;
-  width: 500px;
+  height: 700px;
+  width: 500px; 
+  border-radius: 5px;
+  box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
+  -webkit-box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
+  -moz-box-shadow: 0px -1px 27px 3px rgba(186,200,227,0.75);
 }
 //--------------Input fields-----------
 
@@ -126,10 +134,11 @@ body {
     a:hover {
       .submit {
         bottom: 0px;
-        transition: all 1s ease-in-out;
+        transition: all 1.5s ease-in-out;
       }
       .button {
-        transition: all 1s ease-in-out;
+        transition: all 1.5s ease-in-out;
+        box-shadow: 0px 0px 38px 13px #1ECE39;
       }
     }
       .submit {
@@ -150,9 +159,10 @@ body {
       transition: all 3s ease-in-out;
       display: flex;
       justify-content: center;
+      padding: 5px;
+      border-radius: 5px;
       span {
         text-align: center;
-        font-size: 35px;
         line-height: 70px;
         margin: 0 auto;
         transition: all 0.3s ease-in-out;
