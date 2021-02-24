@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { sightings } from "./sightings";
+import { sightingsReducer } from "./sightings";
 
 const rootReducer = combineReducers({
-  sightings,
+  sightingsReducer,
 });
 
 export default rootReducer;

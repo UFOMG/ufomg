@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./MainPage.scss";
 import ufoHover from '../../assets/ufo.png'
 import { Link } from "react-router-dom";
+import fetchSightings from "../../api";
+import { useDispatch } from "react-redux";
 
 
 const MainPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetchSightings(dispatch);
+  });
+
   return (
     <main className="main">
       <div className="main-content">
         <div id="app">
           <div id="wrapper">
-            <h1 className="glitch" data-text="UFOMG">UFOMG</h1>
+            <h1 className="glitch" data-text="UFOMG">
+              UFOMG
+            </h1>
           </div>
         </div>
         <div className="btn-container">
