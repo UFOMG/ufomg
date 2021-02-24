@@ -25,30 +25,21 @@ const MainPage = () => {
         </div>
         <div className="btn-container">
             <div className="container">
-              <a target="_blank">
+              <Link to="/sightings-map">
                 <div className="button mainBtns">
                   <span>Sightings</span>
                 </div>
                 <img src={ufoHover} className='submit ufoIcon'/>
-              </a>
+              </Link>
             </div>
-              <div className="container">
-                <a target="_blank">
-                  <div className="button mainBtns">
-                    <span>Report Sighting</span>
-                  </div>
-                  <img src={ufoHover} className='submit ufoIcon'/>
-                </a>
-              </div>
-          {/* <Link to="/sightings-map">
-            <button className="main-btns">Sightings</button>
-          </Link>
-          <Link to="/report-form">
-            <button className="main-btns">Report Sighting</button>
-          </Link> */}
-{/* 
-          I was unable to get the link element to work with the home page
-          buttons so I went ahead and commented it out so that you could look over it */}
+            <div className="container">
+              <Link to="/report-form">
+                <div className="button mainBtns">
+                  <span>Report Sighting</span>
+                </div>
+                <img src={ufoHover} className='submit ufoIcon'/>
+              </Link>
+            </div>
         </div>
       </div>
     </main>
