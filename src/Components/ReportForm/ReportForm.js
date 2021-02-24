@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ReportForm.scss";
-import { postSighting, reverseAddress } from "../../api";
+import { postSighting, geolocateUser } from "../../api";
 import ufoHover from "../../assets/ufo.png";
 import ufo from "../../assets/ufoFormPhoto.jpg";
 import { useDispatch } from "react-redux";
@@ -36,7 +36,7 @@ const ReportForm = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    reverseAddress(city, usState).then((data) => {
+    geolocateUser(city, usState).then((data) => {
       const coordinates = data.results[0].geometry.location;
       postSighting(
         {
