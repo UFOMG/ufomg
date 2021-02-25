@@ -1,14 +1,30 @@
 
+
 .main {
-  width: 100vw;
+  background-image: url('https://media.giphy.com/media/QFNpEeQABcMEw/giphy.gif');
+  background-size: cover;
+  
+  
+  
   height: 100vh;
+  width: 100vw;
+  padding:0;
+  margin:0;
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .alien-logo {
   height: 50vh;
+  width: 35vw;
+  margin-bottom: 30%;
+  -webkit-animation: fadein 5s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 5s; /* Firefox < 16 */
+        -ms-animation: fadein 5s; /* Internet Explorer */
+         -o-animation: fadein 5s; /* Opera < 12.1 */
+            animation: fadein 5s;
   width: 22vw;
   margin-bottom: 30%;
 }
@@ -17,6 +33,8 @@
   display: flex;
   flex-direction: column;
   place-items: center;
+  height: 100vh;
+  place-content: space-evenly;
 }
 
 .main-btns {
@@ -31,15 +49,23 @@
   font-family: monospace;
   font-weight: bold;
 }
-
-.btns {
+.btn-container {
   display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
+
 
 h1 {
 	margin: 0;
 }
 
+.ufo-quote {
+  color: white;
+}
+
+
+//------------glitch styling---------
 #app {
 	width: 100%;
 	margin: 0;
@@ -114,3 +140,4 @@ h1 {
     }
   }
 }
+
