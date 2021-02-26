@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./MainPage.scss";
 import { Link } from "react-router-dom";
 import fetchSightings from "../../api";
@@ -11,11 +11,6 @@ const MainPage = () => {
   useEffect(() => {
     fetchSightings(dispatch);
   });
-
-
-
-
-
 
   return (
     <main className="main">
