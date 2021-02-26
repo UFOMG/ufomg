@@ -1,74 +1,46 @@
 import React, { useState } from "react";
 import "./SightingsFilter.scss";
+import { usStates } from "../../assets/mapSetup";
 import { useSelector } from "react-redux";
 
 const SightingsFilter = () => {
-  const [selectedState, setSelectedState] = useState('');
+  const [selectedState, setSelectedState] = useState("");
   const sightings = useSelector((state) => state.sightingsReducer);
 
-  const usStates = [
-    { name: "ALABAMA", abbreviation: "AL" },
-    { name: "ALASKA", abbreviation: "AK" },
-    { name: "AMERICAN SAMOA", abbreviation: "AS" },
-    { name: "ARIZONA", abbreviation: "AZ" },
-    { name: "ARKANSAS", abbreviation: "AR" },
-    { name: "CALIFORNIA", abbreviation: "CA" },
-    { name: "COLORADO", abbreviation: "CO" },
-    { name: "CONNECTICUT", abbreviation: "CT" },
-    { name: "DELAWARE", abbreviation: "DE" },
-    { name: "DISTRICT OF COLUMBIA", abbreviation: "DC" },
-    { name: "FLORIDA", abbreviation: "FL" },
-    { name: "GEORGIA", abbreviation: "GA" },
-    { name: "GUAM", abbreviation: "GU" },
-    { name: "HAWAII", abbreviation: "HI" },
-    { name: "IDAHO", abbreviation: "ID" },
-    { name: "ILLINOIS", abbreviation: "IL" },
-    { name: "INDIANA", abbreviation: "IN" },
-    { name: "IOWA", abbreviation: "IA" },
-    { name: "KANSAS", abbreviation: "KS" },
-    { name: "KENTUCKY", abbreviation: "KY" },
-    { name: "LOUISIANA", abbreviation: "LA" },
-    { name: "MAINE", abbreviation: "ME" },
-    { name: "MARSHALL ISLANDS", abbreviation: "MH" },
-    { name: "MARYLAND", abbreviation: "MD" },
-    { name: "MASSACHUSETTS", abbreviation: "MA" },
-    { name: "MICHIGAN", abbreviation: "MI" },
-    { name: "MINNESOTA", abbreviation: "MN" },
-    { name: "MISSISSIPPI", abbreviation: "MS" },
-    { name: "MISSOURI", abbreviation: "MO" },
-    { name: "MONTANA", abbreviation: "MT" },
-    { name: "NEBRASKA", abbreviation: "NE" },
-    { name: "NEVADA", abbreviation: "NV" },
-    { name: "NEW HAMPSHIRE", abbreviation: "NH" },
-    { name: "NEW JERSEY", abbreviation: "NJ" },
-    { name: "NEW MEXICO", abbreviation: "NM" },
-    { name: "NEW YORK", abbreviation: "NY" },
-    { name: "NORTH CAROLINA", abbreviation: "NC" },
-    { name: "NORTH DAKOTA", abbreviation: "ND" },
-    { name: "OHIO", abbreviation: "OH" },
-    { name: "OKLAHOMA", abbreviation: "OK" },
-    { name: "OREGON", abbreviation: "OR" },
-    { name: "PALAU", abbreviation: "PW" },
-    { name: "PENNSYLVANIA", abbreviation: "PA" },
-    { name: "PUERTO RICO", abbreviation: "PR" },
-    { name: "RHODE ISLAND", abbreviation: "RI" },
-    { name: "SOUTH CAROLINA", abbreviation: "SC" },
-    { name: "SOUTH DAKOTA", abbreviation: "SD" },
-    { name: "TENNESSEE", abbreviation: "TN" },
-    { name: "TEXAS", abbreviation: "TX" },
-    { name: "UTAH", abbreviation: "UT" },
-    { name: "VERMONT", abbreviation: "VT" },
-    { name: "VIRGIN ISLANDS", abbreviation: "VI" },
-    { name: "VIRGINIA", abbreviation: "VA" },
-    { name: "WASHINGTON", abbreviation: "WA" },
-    { name: "WEST VIRGINIA", abbreviation: "WV" },
-    { name: "WISCONSIN", abbreviation: "WI" },
-    { name: "WYOMING", abbreviation: "WY" },
-  ];
-
   const generateDropdownOptions = () => {
-    return usStates.map((state) => {
-      return <option value={`${state.abbreviation}`}>{`${state.name}`}</option>;
+    return usStates.map((state, index) => {
+      return (
+        <option
+          key={index}
+          value={`${state.abbreviation}`}
+        >{`${state.name}`}</option>
+      );
+    });
+  };
+
+  const filterSightings = (state) => {
+    return sightings.sightings.filter((sighting) => {
+      return sighting.state.toLowerCase() === state.toLowerCase();
+    });
+  };
+
+  const generateFilteredSightings = (sightings) => {
+    return sightings.map((sighting) => {
+      return (
+        <article className="single-sighting">
+          <img
+            src={sighting.image}
+            className="sighting-image"
+            alt={sighting.event_type}
+          />
+          <div className="sighting-details">
+            <h1>Name: {`${sighting.name}`}</h1>
+            <h1>City: {`${sighting.city}`}</h1>
+            <h1>Event Type: {`${sighting.event_type}`}</h1>
+            <h1>Description: {`${sighting.description}`}</h1>
+          </div>
+        </article>
+      );
     });
   };
 
@@ -76,20 +48,32 @@ const SightingsFilter = () => {
     setSelectedState(event.target.value);
   };
 
+  const displayFilteredSightings = () => {
+    const filteredSightings = filterSightings(selectedState);
+    return generateFilteredSightings(filteredSightings);
+  };
+
   return (
     <main className="filter-main">
-      <select
-        value={selectedState}
-        onChange={handleFilterChange}
-        className="drop-down"
-       
-
-      >
-        <option  disabled={selectedState ? true : false}>
-          -- Choose State --
-        </option>
-        {generateDropdownOptions()}
-      </select>
+      <h1 className="glitch" data-text="UFOMG">
+        UFOMG
+      </h1>
+      <div className="filter-div">
+        <aside className="filter-aside">
+          <h3>Show Sightings By State</h3>
+          <select
+            value={selectedState}
+            onChange={handleFilterChange}
+            className="drop-down"
+          >
+            <option disabled={selectedState ? true : false}>
+              -- Choose State --
+            </option>
+            {generateDropdownOptions()}
+          </select>
+        </aside>
+        <section className="filter-section">{selectedState && displayFilteredSightings()}</section>
+      </div>
     </main>
   );
 };
