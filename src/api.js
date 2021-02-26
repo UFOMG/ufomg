@@ -7,7 +7,7 @@ import {
 
 const fetchSightings = (dispatch) => {
   dispatch(fetchSightingsPending());
-  fetch("http://localhost:5000/api/v1/reports")
+  fetch("https://ancient-mesa-60922.herokuapp.com/api/v1/reports")
     .then((response) => response.json())
     .then((response) => {
       if (response.error) {
@@ -22,7 +22,7 @@ const fetchSightings = (dispatch) => {
 };
 
 export const postSighting = (sighting, dispatch) => {
-  fetch("http://localhost:5000/api/v1/reports", {
+  fetch("https://ancient-mesa-60922.herokuapp.com/api/v1/reports", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
