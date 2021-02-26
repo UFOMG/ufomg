@@ -267,6 +267,9 @@ const MainPage = () => {
             <Link to="/report-form">
               <button className="btns">Report Sighting</button>
             </Link>
+            <Link to="/sighting-research">
+              <button className="btns">Research</button>
+            </Link>
           </div>
         </section>
       </div>
