@@ -19,6 +19,7 @@ import {
   centerControl,
 } from "../../assets/mapSetup";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const SightingsMap = () => {
   const [selectedCenter, setSelectedCenter] = useState(null);
@@ -126,7 +127,9 @@ const SightingsMap = () => {
                 <p>{selectedSite.name ? selectedSite.name : "anonymous"}</p>
                 <p>{selectedSite.description}</p>
                 <p>{selectedSite.event_type}</p>
-                <button>Comment</button>
+                <Link to={`/comment-page/${selectedSite.id}`}>
+                  <button>Comment</button>
+                </Link>
                 {/* route to comment page */}
               </div>
               {selectedSite.image && (
@@ -141,7 +144,9 @@ const SightingsMap = () => {
         )}
       </GoogleMap>
       <div className="button-div">
-        <button onClick={toggleHeatMap} className="main-button">Toggle HeatMap</button>
+        <button onClick={toggleHeatMap} className="main-button">
+          Toggle HeatMap
+        </button>
         {/* <button>Show Recent Sightings</button> */}
       </div>
     </main>
