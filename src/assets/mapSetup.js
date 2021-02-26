@@ -1,6 +1,6 @@
 export const containerStyle = {
   width: "90vw",
-  height: "90vh",
+  height: "85vh",
 };
 
 export const mapCenter = {
@@ -22,8 +22,39 @@ export const mapGradient = [
   "rgba(63, 0, 91, 1)",
   "rgba(127, 0, 63, 1)",
   "rgba(191, 0, 31, 1)",
-  "rgba(255, 0, 0, 1)" // more dense
+  "rgba(255, 0, 0, 1)", // more dense
 ];
+
+export const libraries = ["places", "visualization"];
+
+export const centerControl = (controlDiv, map) => {
+  // Set CSS for the control border.
+  const controlUI = document.createElement("div");
+  controlUI.id = "toggle-heatmap";
+  controlUI.style.backgroundColor = "#fff";
+  controlUI.style.border = "2px solid #fff";
+  controlUI.style.borderRadius = "3px";
+  controlUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+  controlUI.style.cursor = "pointer";
+  controlUI.style.marginBottom = "22px";
+  controlUI.style.marginTop = "10px";
+  controlUI.style.textAlign = "center";
+  controlUI.title = "Click to center map";
+  controlDiv.appendChild(controlUI);
+  // Set CSS for the control interior.
+  const controlText = document.createElement("div");
+  controlText.style.color = "rgb(25,25,25)";
+  controlText.style.fontFamily = "Roboto,Arial,sans-serif";
+  controlText.style.fontSize = "16px";
+  controlText.style.lineHeight = "38px";
+  controlText.style.paddingLeft = "5px";
+  controlText.style.paddingRight = "5px";
+  controlText.innerHTML = "Center Map";
+  controlUI.appendChild(controlText);
+  controlUI.addEventListener("click", () => {
+    map.setCenter(mapCenter);
+  });
+}
 
 export const customMap = [
   {
