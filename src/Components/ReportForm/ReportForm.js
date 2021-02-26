@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import "./ReportForm.scss";
-import { postSighting } from "../../api";
+import { postSighting, geolocateUser } from "../../api";
 import ufoHover from "../../assets/ufo.png";
 import ufo from "../../assets/ufoFormPhoto.jpg";
 import { useDispatch } from "react-redux";
+import UploadWidget from "../UploadWidget/UploadWidget";
 
 const ReportForm = () => {
   const [eventType, setEventType] = useState("");
   const [name, setName] = useState("anonymous");
-  const [location, setLocation] = useState("");
+  const [city, setCity] = useState("");
+  const [usState, setUsState] = useState("");
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [imageAlt, setImageAlt] = useState("");
 
   const dispatch = useDispatch();
 
@@ -17,8 +21,12 @@ const ReportForm = () => {
     setName(event.target.value);
   };
 
-  const handleLocationChange = (event) => {
-    setLocation(event.target.value);
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
+  };
+
+  const handleUsStateChange = (event) => {
+    setUsState(event.target.value);
   };
 
   const handleDescriptionChange = (event) => {
@@ -29,24 +37,36 @@ const ReportForm = () => {
     setEventType(event.target.value);
   };
 
+  const handleImageUpload = (imageUrl, imageAlt) => {
+    setImageUrl(imageUrl);
+    setImageAlt(imageAlt);
+  };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    postSighting(
-      {
-        name,
-        description,
-        event_type: eventType,
-        lat: 48,
-        long: -100,
-        image: "image.jpg",
-      },
-      dispatch
-    );
+    geolocateUser(city, usState).then((data) => {
+      const coordinates = data.results[0].geometry.location;
+      postSighting(
+        {
+          name,
+          city,
+          state: usState,
+          lat: coordinates.lat,
+          long: coordinates.lng,
+          description,
+          event_type: eventType,
+          image: imageUrl,
+        },
+        dispatch
+      );
+    });
   };
+
+  const userImage = imageUrl ? imageUrl : ufo;
 
   return (
     <form className="form">
-      <img src={ufo} className="formPhoto" alt="ufo" />
+      <img src={userImage} className="formPhoto" alt="ufo" />
       <div className="form-inputs">
         <div className="form__group field">
           <input
@@ -66,14 +86,28 @@ const ReportForm = () => {
           <input
             type="input"
             className="form__field"
-            placeholder="Location"
-            name="location"
-            id="location"
-            onChange={handleLocationChange}
+            placeholder="City"
+            name="city"
+            id="city"
+            onChange={handleCityChange}
             required
           />
-          <label htmlFor="location" className="form__label">
-            City, State
+          <label htmlFor="city" className="form__label">
+            City
+          </label>
+        </div>
+        <div className="form__group field">
+          <input
+            type="input"
+            className="form__field"
+            placeholder="State"
+            name="state"
+            id="state"
+            onChange={handleUsStateChange}
+            required
+          />
+          <label htmlFor="state" className="form__label">
+            State
           </label>
         </div>
         <div className="form__group field">
@@ -103,6 +137,7 @@ const ReportForm = () => {
             <option value="abduction">Abduction</option>
           </select>
         </label>
+        <UploadWidget data={handleImageUpload} />
         <div className="container">
           <a
             href="/#"
