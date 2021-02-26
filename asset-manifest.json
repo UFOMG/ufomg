@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.06f0d43d.chunk.css",
-    "main.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.23aa19d3.chunk.js",
-    "main.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.23aa19d3.chunk.js.map",
+    "main.css": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.317f9409.chunk.css",
+    "main.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.abc04c7f.chunk.js",
+    "main.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.abc04c7f.chunk.js.map",
     "runtime-main.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/runtime-main.3ce1362b.js",
     "runtime-main.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/runtime-main.3ce1362b.js.map",
-    "static/js/2.1896dd85.chunk.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.1896dd85.chunk.js",
-    "static/js/2.1896dd85.chunk.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.1896dd85.chunk.js.map",
+    "static/js/2.82f8a1c9.chunk.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.82f8a1c9.chunk.js",
+    "static/js/2.82f8a1c9.chunk.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.82f8a1c9.chunk.js.map",
     "index.html": "/ufomg.github.io/ufomg/ufomg-fe/index.html",
-    "static/css/main.06f0d43d.chunk.css.map": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.06f0d43d.chunk.css.map",
-    "static/js/2.1896dd85.chunk.js.LICENSE.txt": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.1896dd85.chunk.js.LICENSE.txt",
+    "static/css/main.317f9409.chunk.css.map": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.317f9409.chunk.css.map",
+    "static/js/2.82f8a1c9.chunk.js.LICENSE.txt": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.82f8a1c9.chunk.js.LICENSE.txt",
     "static/media/alienmarker.e97df2e0.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/alienmarker.e97df2e0.png",
     "static/media/skylights.af9f465f.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/skylights.af9f465f.png",
     "static/media/ReportForm.scss": "/ufomg.github.io/ufomg/ufomg-fe/static/media/star-bg.c1ffa926.jpg",
@@ -19,8 +19,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.3ce1362b.js",
-    "static/js/2.1896dd85.chunk.js",
-    "static/css/main.06f0d43d.chunk.css",
-    "static/js/main.23aa19d3.chunk.js"
+    "static/js/2.82f8a1c9.chunk.js",
+    "static/css/main.317f9409.chunk.css",
+    "static/js/main.abc04c7f.chunk.js"
   ]
 }
