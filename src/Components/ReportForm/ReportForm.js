@@ -131,7 +131,7 @@ const ReportForm = () => {
             onChange={handleEventTypeChange}
             className="drop-down"
           >
-            <option selected disabled></option>
+            <option disabled={eventType ? true : false}></option>
             <option value="sighting">Sighting</option>
             <option value="encounter">Encounter</option>
             <option value="abduction">Abduction</option>
