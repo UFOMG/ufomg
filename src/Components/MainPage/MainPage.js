@@ -27,7 +27,7 @@ const MainPage = () => {
             <div className="container">
               <Link to="/sightings-map">
                 <div className="button mainBtns">
-                  <span>Sightings</span>
+                  <span>Sightings Map</span>
                 </div>
                 <img src={ufoHover} className='submit ufoIcon'/>
               </Link>
@@ -36,6 +36,14 @@ const MainPage = () => {
               <Link to="/report-form">
                 <div className="button mainBtns">
                   <span>Report Sighting</span>
+                </div>
+                <img src={ufoHover} className='submit ufoIcon'/>
+              </Link>
+            </div>
+            <div className="container">
+              <Link to="/sighting-reports">
+                <div className="button mainBtns">
+                  <span>Research</span>
                 </div>
                 <img src={ufoHover} className='submit ufoIcon'/>
               </Link>
