@@ -13,7 +13,7 @@ function App() {
         <Route exact path="/" component={MainPage} />
         <Route exact path="/report-form" component={ReportForm} />
         <Route exact path="/sightings-map" component={MapDisplay} />
-        <Route exact path="/sighting-reports" component={SightingsFilter} />
+        <Route exact path="/sighting-research" component={SightingsFilter} />
       </Switch>
     </>
   );
