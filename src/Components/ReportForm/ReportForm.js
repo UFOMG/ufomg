@@ -49,10 +49,12 @@ const ReportForm = () => {
       postSighting(
         {
           name,
-          description,
-          event_type: eventType,
+          city,
+          state: usState,
           lat: coordinates.lat,
           long: coordinates.lng,
+          description,
+          event_type: eventType,
           image: imageUrl,
         },
         dispatch
