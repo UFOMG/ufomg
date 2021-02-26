@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./SightingsFilter.scss";
 import { usStates } from "../../assets/mapSetup";
 import { useSelector } from "react-redux";
+import alienstock from "../../assets/alienstock.jpeg";
+import lightsstock from "../../assets/lightsstock.jpeg";
+import ufostock from "../../assets/ufostock.jpeg";
 
 const SightingsFilter = () => {
   const [selectedState, setSelectedState] = useState("");
@@ -24,20 +27,83 @@ const SightingsFilter = () => {
     });
   };
 
+  const generateStockImage = (eventType) => {
+    switch (eventType) {
+      case "sighting":
+        return lightsstock;
+      case "encounter":
+        return alienstock;
+      case "abduction":
+        return ufostock;
+      default:
+        return lightsstock;
+    }
+  };
+
   const generateFilteredSightings = (sightings) => {
     return sightings.map((sighting) => {
+      const sightingImage = sighting.image
+        ? sighting.image
+        : generateStockImage(sighting.event_type);
       return (
         <article className="single-sighting">
-          <img
-            src={sighting.image}
-            className="sighting-image"
-            alt={sighting.event_type}
-          />
+          {/* stock images based on event type if not image  */}
+          <div className="stock-div">
+            <img
+              src={sightingImage}
+              className="sighting-image"
+              alt={sighting.event_type}
+            />
+          </div>
           <div className="sighting-details">
             <h1>Name: {`${sighting.name}`}</h1>
             <h1>City: {`${sighting.city}`}</h1>
             <h1>Event Type: {`${sighting.event_type}`}</h1>
             <h1>Description: {`${sighting.description}`}</h1>
+            <h1>Comments:</h1>
+            {/* populate when BE has comments` */}
+            <div className="comments-div">
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+            </div>
           </div>
         </article>
       );
@@ -72,7 +138,9 @@ const SightingsFilter = () => {
             {generateDropdownOptions()}
           </select>
         </aside>
-        <section className="filter-section">{selectedState && displayFilteredSightings()}</section>
+        <section className="filter-section">
+          {selectedState && displayFilteredSightings()}
+        </section>
       </div>
     </main>
   );
