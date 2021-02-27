@@ -54,6 +54,31 @@ export const centerControl = (controlDiv, map) => {
   controlUI.addEventListener("click", () => {
     map.setCenter(mapCenter);
   });
+  const zoomUI = document.createElement("div");
+  zoomUI.id = "reset-zoom";
+  zoomUI.style.backgroundColor = "#fff";
+  zoomUI.style.border = "2px solid #fff";
+  zoomUI.style.borderRadius = "3px";
+  zoomUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+  zoomUI.style.cursor = "pointer";
+  zoomUI.style.marginBottom = "22px";
+  zoomUI.style.marginTop = "10px";
+  zoomUI.style.textAlign = "center";
+  zoomUI.title = "Reset map zoom";
+  controlDiv.appendChild(zoomUI);
+  // Set CSS for the control interior.
+  const zoomText = document.createElement("div");
+  zoomText.style.color = "rgb(25,25,25)";
+  zoomText.style.fontFamily = "Roboto,Arial,sans-serif";
+  zoomText.style.fontSize = "16px";
+  zoomText.style.lineHeight = "38px";
+  zoomText.style.paddingLeft = "5px";
+  zoomText.style.paddingRight = "5px";
+  zoomText.innerHTML = "Reset Zoom";
+  zoomUI.appendChild(zoomText);
+  zoomUI.addEventListener("click", () => {
+    map.setZoom(5);
+  });
 };
 
 export const customMap = [
