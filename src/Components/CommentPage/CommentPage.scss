@@ -1,0 +1,23 @@
+.comment-image {
+  height: 500px;
+  width: 500px;
+}
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-div {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+}
+.display-comment {
+  height: 350px;
+  overflow: auto;
+}
+
+.comment-details {
+  display: flex;
+}
