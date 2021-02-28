@@ -1,11 +1,137 @@
+import React from "react";
+// import "./mapSetup.scss";
+import ufo from "../assets/ufobeam.png";
+import alien from "../assets/alienmarker.png";
+import lights from "../assets/skylights.png";
+import blueBlur from "../assets/blue-blur.png";
+import greenBlur from "../assets/green-blur.png";
+import redBlur from "../assets/red-blur.png";
+
 export const containerStyle = {
   width: "90vw",
-  height: "85vh",
+  height: "80vh",
 };
 
 export const mapCenter = {
   lat: 39.8283,
   lng: -98.5795,
+};
+
+export const generateEventIcons = (eventType, images) => {
+  switch (eventType) {
+    case "sighting":
+      return images[0];
+    case "encounter":
+      return images[1];
+    case "abduction":
+      return images[2];
+    default:
+      return images[0];
+  }
+};
+
+export const generateDateIcons = (date, images) => {
+  const today = new Date();
+  const oneWeekAgo = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() - today.getDay() - 7
+  );
+  const oneMonthAgo = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() - today.getDay() - 30
+  );
+  switch (date) {
+    case date >= oneWeekAgo:
+      return images[0];
+    case date < oneWeekAgo && date > oneMonthAgo:
+      return images[1];
+    case date <= oneMonthAgo:
+      return images[2];
+    default:
+      return images[0];
+  }
+};
+
+export const handleOnLoad = (map) => {
+  const centerControlDiv = document.createElement("div");
+  centerControlDiv.id = "custom-buttons";
+  centerControl(centerControlDiv, map);
+  generateLegend(map);
+};
+
+const generateLegend = (map) => {
+  const legendDiv = document.createElement("div");
+  const legendUI = document.createElement("div");
+  legendUI.id = "legend";
+  legendUI.style.backgroundColor = "#fff";
+  legendUI.style.border = "2px solid #fff";
+  legendUI.style.borderRadius = "3px";
+  legendUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+  legendUI.style.cursor = "pointer";
+  legendUI.style.marginBottom = "22px";
+  legendUI.style.marginTop = "10px";
+  legendUI.style.textAlign = "center";
+  legendUI.title = "Reset map zoom";
+  legendDiv.appendChild(legendUI);
+  // Set CSS for the control interior.
+  const legendText = document.createElement("div");
+  legendText.style.color = "rgb(25,25,25)";
+  legendText.style.fontFamily = "Roboto,Arial,sans-serif";
+  legendText.style.fontSize = "16px";
+  legendText.style.lineHeight = "38px";
+  legendText.style.paddingLeft = "30px";
+  legendText.style.paddingRight = "30px";
+  legendText.innerHTML = "Reset Zoom";
+  legendDiv.appendChild(legendText);
+
+  var content = [];
+  content.push("<h2>Icon Legend</h2>");
+  content.push(
+    '<div style="display:flex; justify-content: space-between"><img className="legend-icon" width="25" height="25" src="' +
+      lights +
+      '"><p>Lights in Sky</p></div>'
+  );
+  content.push(
+    '<div style="display:flex; justify-content: space-between"><img className="legend-icon" width="25" height="25" src="' +
+      alien +
+      '"><p>Alien Sighting</p></div>'
+  );
+  content.push(
+    '<div style="display:flex; justify-content: space-between"><img className="legend-icon" width="25" height="25" src="' +
+      ufo +
+      '"><p>Abduction</p></div>'
+  );
+  content.push("<h2>Sighting Legend</h2>");
+  content.push(
+    '<div style="display:flex; justify-content: space-between"><img className="legend-icon" width="25" height="25" src="' +
+      redBlur +
+      '"><p>Within last week</p></div>'
+  );
+  content.push(
+    '<div style="display:flex; justify-content: space-between"><img className="legend-icon" width="25" height="25" src="' +
+      greenBlur +
+      '"><p>Within last month</p></div>'
+  );
+  content.push(
+    '<div style="display:flex; justify-content: space-between"><img className="legend-icon" width="25" height="25" src="' +
+      blueBlur +
+      '"><p>Over a month</p></div>'
+  );
+
+  legendUI.innerHTML = content.join("");
+  legendUI.index = 1;
+  map.controls[window.google.maps.ControlPosition.LEFT_BOTTOM].push(legendDiv);
+};
+
+export const generateHeatMapData = (sightingsInfo) => {
+  return sightingsInfo.sightings.map((sighting) => {
+    return new window.google.maps.LatLng(
+      parseInt(sighting.lat),
+      parseInt(sighting.long)
+    );
+  });
 };
 
 export const mapGradient = [
@@ -28,9 +154,20 @@ export const mapGradient = [
 export const libraries = ["places", "visualization"];
 
 export const centerControl = (controlDiv, map) => {
+  const uiStyle = {
+    backgroundColor: "#fff",
+    border: "2px solid #fff",
+    borderRadius: "3px",
+    boxShadow: "0 2px 6px rgba(0,0,0,.3)",
+    cursor: "pointer",
+    marginBottom: "22px",
+    marginTop: "10px",
+    textAlign: "center",
+  };
   // Set CSS for the control border.
   const controlUI = document.createElement("div");
   controlUI.id = "toggle-heatmap";
+  // controlUI.style = uiStyle
   controlUI.style.backgroundColor = "#fff";
   controlUI.style.border = "2px solid #fff";
   controlUI.style.borderRadius = "3px";
@@ -54,6 +191,32 @@ export const centerControl = (controlDiv, map) => {
   controlUI.addEventListener("click", () => {
     map.setCenter(mapCenter);
   });
+  const zoomUI = document.createElement("div");
+  zoomUI.id = "reset-zoom";
+  zoomUI.style.backgroundColor = "#fff";
+  zoomUI.style.border = "2px solid #fff";
+  zoomUI.style.borderRadius = "3px";
+  zoomUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+  zoomUI.style.cursor = "pointer";
+  zoomUI.style.marginBottom = "22px";
+  zoomUI.style.marginTop = "10px";
+  zoomUI.style.textAlign = "center";
+  zoomUI.title = "Reset map zoom";
+  controlDiv.appendChild(zoomUI);
+  // Set CSS for the control interior.
+  const zoomText = document.createElement("div");
+  zoomText.style.color = "rgb(25,25,25)";
+  zoomText.style.fontFamily = "Roboto,Arial,sans-serif";
+  zoomText.style.fontSize = "16px";
+  zoomText.style.lineHeight = "38px";
+  zoomText.style.paddingLeft = "5px";
+  zoomText.style.paddingRight = "5px";
+  zoomText.innerHTML = "Reset Zoom";
+  zoomUI.appendChild(zoomText);
+  zoomUI.addEventListener("click", () => {
+    map.setZoom(5);
+  });
+  map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(controlDiv);
 };
 
 export const customMap = [
