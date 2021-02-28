@@ -21,6 +21,7 @@ import {
   libraries,
   centerControl,
   generateEventIcons,
+  generateDateIcons
 } from "../../utilities/mapSetup";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -41,19 +42,42 @@ const SightingsMap = () => {
   });
 
   const generateRecentActivityMarkers = () => {
-    const formatSightingDates = sightings.sightings.map(sighting => {
+    const formatSightingDates = sightings.sightings.map((sighting) => {
       const seperateDate = sighting.created_at;
       const dateSplit = seperateDate.split(",")[0];
       const parsedDate = Date.parse(dateSplit);
       return {
         ...sighting,
-        parsedDate
-      }
-    })
+        parsedDate,
+      };
+    });
+    // most recent sighting is [0]
     const sortSightingsByDate = formatSightingDates.sort((a, b) => {
-      return b.parsedDate - a.parsedDate
+      return b.parsedDate - a.parsedDate;
+    });
+
+    return sortSightingsByDate.map((sighting, index) => {
+      const position = {
+        lat: parseInt(sighting.lat),
+        lng: parseInt(sighting.long),
+      };
+      return (
+      <Marker
+          key={index}
+          icon={{
+            url: generateDateIcons(sighting.event_type, [redBlur, greenBlur, blueBlur]),
+            scaledSize: new window.google.maps.Size(50, 50),
+          }}
+          position={position}
+          onMouseDown={() => {
+            setSelectedSite(sighting);
+          }}
+          onMouseUp={() => {
+            setSelectedCenter(position);
+          }}
+        />
+      )
     })
-    console.log(sortSightingsByDate);
   };
 
   generateRecentActivityMarkers();
@@ -67,7 +91,7 @@ const SightingsMap = () => {
     });
   };
 
-  const generateEventMarkers = () => {
+  const generateEventMarkers = ( markerImages) => {
     return sightings.sightings.map((sighting, index) => {
       const position = {
         lat: parseInt(sighting.lat),
@@ -78,7 +102,7 @@ const SightingsMap = () => {
         <Marker
           key={index}
           icon={{
-            url: generateEventIcons(sighting.event_type, [lights, alien, ufo]),
+            url: generateEventIcons(sighting.event_type, markerImages),
             scaledSize: new window.google.maps.Size(50, 50),
           }}
           position={position}
@@ -96,6 +120,10 @@ const SightingsMap = () => {
   const toggleHeatMap = () => {
     setShowHeatMap(!showHeatMap);
   };
+
+  const toggleRecentActivity = () => {
+    setShowRecentActivity(!showRecentActivity)
+  }
 
   const handleOnLoad = (map) => {
     const centerControlDiv = document.createElement("div");
@@ -116,6 +144,9 @@ const SightingsMap = () => {
         <button onClick={toggleHeatMap} className="main-button">
           Toggle HeatMap
         </button>
+        <button onClick={toggleRecentActivity} className="main-button">
+          Show Recent Activity
+        </button>
         {/* <button>Show Recent Sightings</button> */}
       </div>
       <GoogleMap
@@ -125,13 +156,14 @@ const SightingsMap = () => {
         center={mapCenter}
         zoom={5}
       >
-        {generateEventMarkers()}
+        {showHeatMap && generateEventMarkers( [lights, alien, ufo])}
         {showHeatMap && (
           <HeatmapLayer
             options={{ gradient: mapGradient, radius: 30 }}
             data={generateHeatMapData()}
           />
         )}
+        {showRecentActivity && generateRecentActivityMarkers()}
         {selectedCenter && (
           <InfoWindow
             onCloseClick={() => {
