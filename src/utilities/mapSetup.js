@@ -38,7 +38,7 @@ export const generateDateIcons = (date, images) => {
       return images[0];
     case date < oneWeekAgo && date > oneMonthAgo:
       return images[1];
-    case date < +oneMonthAgo:
+    case date <= oneMonthAgo:
       return images[2];
     default:
       return images[0];
