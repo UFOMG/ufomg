@@ -21,6 +21,30 @@ export const generateEventIcons = (eventType, images) => {
   }
 };
 
+export const generateDateIcons = (date, images) => {
+  const today = new Date();
+  const oneWeekAgo = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() - today.getDay() - 7
+  );
+  const oneMonthAgo = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() - today.getDay() - 30
+  );
+  switch (date) {
+    case date >= oneWeekAgo:
+      return images[0];
+    case date < oneWeekAgo && date > oneMonthAgo:
+      return images[1];
+    case date < +oneMonthAgo:
+      return images[2];
+    default:
+      return images[0];
+  }
+};
+
 export const mapGradient = [
   "rgba(0, 255, 255, 0)", // less dense
   "rgba(0, 255, 255, 1)",
