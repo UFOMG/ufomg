@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SightingsFilter.scss";
-import { usStates } from "../../assets/mapSetup";
+import { usStates } from "../../utilities/mapSetup";
 import { useSelector } from "react-redux";
 import alienstock from "../../assets/alienstock.jpeg";
 import lightsstock from "../../assets/lightsstock.jpeg";
