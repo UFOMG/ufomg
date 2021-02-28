@@ -10,6 +10,9 @@ import {
 import ufo from "../../assets/ufobeam.png";
 import alien from "../../assets/alienmarker.png";
 import lights from "../../assets/skylights.png";
+import blueBlur from "../../assets/blue-blur.png";
+import greenBlur from "../../assets/green-blur.png";
+import redBlur from "../../assets/red-blur.png";
 import {
   containerStyle,
   mapCenter,
@@ -17,7 +20,8 @@ import {
   mapGradient,
   libraries,
   centerControl,
-} from "../../assets/mapSetup";
+  generateEventIcons,
+} from "../../utilities/mapSetup";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -36,6 +40,24 @@ const SightingsMap = () => {
     libraries: libraries,
   });
 
+  const generateRecentActivityMarkers = () => {
+    const formatSightingDates = sightings.sightings.map(sighting => {
+      const seperateDate = sighting.created_at;
+      const dateSplit = seperateDate.split(",")[0];
+      const parsedDate = Date.parse(dateSplit);
+      return {
+        ...sighting,
+        parsedDate
+      }
+    })
+    const sortSightingsByDate = formatSightingDates.sort((a, b) => {
+      return b.parsedDate - a.parsedDate
+    })
+    console.log(sortSightingsByDate);
+  };
+
+  generateRecentActivityMarkers();
+
   const generateHeatMapData = () => {
     return sightings.sightings.map((sighting) => {
       return new window.google.maps.LatLng(
@@ -45,20 +67,7 @@ const SightingsMap = () => {
     });
   };
 
-  const generateIconType = (eventType) => {
-    switch (eventType) {
-      case "sighting":
-        return lights;
-      case "encounter":
-        return alien;
-      case "abduction":
-        return ufo;
-      default:
-        return lights;
-    }
-  };
-
-  const generateMarkers = () => {
+  const generateEventMarkers = () => {
     return sightings.sightings.map((sighting, index) => {
       const position = {
         lat: parseInt(sighting.lat),
@@ -69,7 +78,7 @@ const SightingsMap = () => {
         <Marker
           key={index}
           icon={{
-            url: generateIconType(sighting.event_type),
+            url: generateEventIcons(sighting.event_type, [lights, alien, ufo]),
             scaledSize: new window.google.maps.Size(50, 50),
           }}
           position={position}
@@ -90,6 +99,7 @@ const SightingsMap = () => {
 
   const handleOnLoad = (map) => {
     const centerControlDiv = document.createElement("div");
+    centerControlDiv.id = "custom-buttons";
     centerControl(centerControlDiv, map);
     map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(
       centerControlDiv
@@ -101,6 +111,13 @@ const SightingsMap = () => {
       <h1 className="glitch" data-text="UFOMG">
         UFOMG
       </h1>
+      <div className="button-div">
+        {/* issue with being unable to click on laptop screen */}
+        <button onClick={toggleHeatMap} className="main-button">
+          Toggle HeatMap
+        </button>
+        {/* <button>Show Recent Sightings</button> */}
+      </div>
       <GoogleMap
         onLoad={(map) => handleOnLoad(map)}
         options={{ styles: customMap }}
@@ -108,7 +125,7 @@ const SightingsMap = () => {
         center={mapCenter}
         zoom={5}
       >
-        {generateMarkers()}
+        {generateEventMarkers()}
         {showHeatMap && (
           <HeatmapLayer
             options={{ gradient: mapGradient, radius: 30 }}
@@ -143,12 +160,6 @@ const SightingsMap = () => {
           </InfoWindow>
         )}
       </GoogleMap>
-      <div className="button-div">
-        <button onClick={toggleHeatMap} className="main-button">
-          Toggle HeatMap
-        </button>
-        {/* <button>Show Recent Sightings</button> */}
-      </div>
     </main>
   ) : (
     <></>
