@@ -70,7 +70,6 @@ const SightingsMap = () => {
 
   const createMarkers = (sightingsInfo, iconType, images) => {
     return sightingsInfo.map((sighting, index) => {
-      console.log(sighting);
       const position = {
         lat: parseInt(sighting.lat),
         lng: parseInt(sighting.long),
