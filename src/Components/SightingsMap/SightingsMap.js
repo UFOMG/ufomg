@@ -19,18 +19,19 @@ import {
   customMap,
   mapGradient,
   libraries,
-  centerControl,
   generateEventIcons,
-  generateDateIcons
+  generateDateIcons,
+  handleOnLoad,
+  generateHeatMapData,
 } from "../../utilities/mapSetup";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const SightingsMap = () => {
+
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [selectedSite, setSelectedSite] = useState(null);
   const [showHeatMap, setShowHeatMap] = useState(true);
-  // ability to show recent sightings, not yet in BE
   const [showRecentActivity, setShowRecentActivity] = useState(false);
 
   const sightings = useSelector((state) => state.sightingsReducer);
@@ -42,7 +43,21 @@ const SightingsMap = () => {
   });
 
   const generateRecentActivityMarkers = () => {
-    const formatSightingDates = sightings.sightings.map((sighting) => {
+    const formatSightingDates = addParsedDate();
+
+    const sortSightingsByDate = formatSightingDates.sort((a, b) => {
+      return b.parsedDate - a.parsedDate;
+    });
+
+    return createMarkers(sortSightingsByDate, generateDateIcons, [
+      redBlur,
+      greenBlur,
+      blueBlur,
+    ]);
+  };
+
+  const addParsedDate = () => {
+    return sightings.sightings.map((sighting) => {
       const seperateDate = sighting.created_at;
       const dateSplit = seperateDate.split(",")[0];
       const parsedDate = Date.parse(dateSplit);
@@ -51,58 +66,24 @@ const SightingsMap = () => {
         parsedDate,
       };
     });
-    // most recent sighting is [0]
-    const sortSightingsByDate = formatSightingDates.sort((a, b) => {
-      return b.parsedDate - a.parsedDate;
-    });
+  };
 
-    return sortSightingsByDate.map((sighting, index) => {
+  const createMarkers = (sightingsInfo, iconType, images) => {
+    return sightingsInfo.map((sighting, index) => {
+      console.log(sighting);
       const position = {
         lat: parseInt(sighting.lat),
         lng: parseInt(sighting.long),
       };
-      return (
-      <Marker
-          key={index}
-          icon={{
-            url: generateDateIcons(sighting.event_type, [redBlur, greenBlur, blueBlur]),
-            scaledSize: new window.google.maps.Size(50, 50),
-          }}
-          position={position}
-          onMouseDown={() => {
-            setSelectedSite(sighting);
-          }}
-          onMouseUp={() => {
-            setSelectedCenter(position);
-          }}
-        />
-      )
-    })
-  };
-
-  generateRecentActivityMarkers();
-
-  const generateHeatMapData = () => {
-    return sightings.sightings.map((sighting) => {
-      return new window.google.maps.LatLng(
-        parseInt(sighting.lat),
-        parseInt(sighting.long)
-      );
-    });
-  };
-
-  const generateEventMarkers = ( markerImages) => {
-    return sightings.sightings.map((sighting, index) => {
-      const position = {
-        lat: parseInt(sighting.lat),
-        lng: parseInt(sighting.long),
-      };
-
+      const iconData =
+        iconType === generateEventIcons
+          ? sighting.event_type
+          : sighting.created_at;
       return (
         <Marker
           key={index}
           icon={{
-            url: generateEventIcons(sighting.event_type, markerImages),
+            url: iconType(iconData, images),
             scaledSize: new window.google.maps.Size(50, 50),
           }}
           position={position}
@@ -122,16 +103,7 @@ const SightingsMap = () => {
   };
 
   const toggleRecentActivity = () => {
-    setShowRecentActivity(!showRecentActivity)
-  }
-
-  const handleOnLoad = (map) => {
-    const centerControlDiv = document.createElement("div");
-    centerControlDiv.id = "custom-buttons";
-    centerControl(centerControlDiv, map);
-    map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(
-      centerControlDiv
-    );
+    setShowRecentActivity(!showRecentActivity);
   };
 
   return isLoaded ? (
@@ -140,14 +112,12 @@ const SightingsMap = () => {
         UFOMG
       </h1>
       <div className="button-div">
-        {/* issue with being unable to click on laptop screen */}
         <button onClick={toggleHeatMap} className="main-button">
           Toggle HeatMap
         </button>
         <button onClick={toggleRecentActivity} className="main-button">
           Show Recent Activity
         </button>
-        {/* <button>Show Recent Sightings</button> */}
       </div>
       <GoogleMap
         onLoad={(map) => handleOnLoad(map)}
@@ -156,13 +126,18 @@ const SightingsMap = () => {
         center={mapCenter}
         zoom={5}
       >
-        {showHeatMap && generateEventMarkers( [lights, alien, ufo])}
         {showHeatMap && (
           <HeatmapLayer
             options={{ gradient: mapGradient, radius: 30 }}
-            data={generateHeatMapData()}
+            data={generateHeatMapData(sightings)}
           />
         )}
+        {!showRecentActivity &&
+          createMarkers(sightings.sightings, generateEventIcons, [
+            lights,
+            alien,
+            ufo,
+          ])}
         {showRecentActivity && generateRecentActivityMarkers()}
         {selectedCenter && (
           <InfoWindow
@@ -179,7 +154,6 @@ const SightingsMap = () => {
                 <Link to={`/comment-page/${selectedSite.id}`}>
                   <button>Comment</button>
                 </Link>
-                {/* route to comment page */}
               </div>
               {selectedSite.image && (
                 <img

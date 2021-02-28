@@ -45,6 +45,24 @@ export const generateDateIcons = (date, images) => {
   }
 };
 
+export const handleOnLoad = (map) => {
+  const centerControlDiv = document.createElement("div");
+  centerControlDiv.id = "custom-buttons";
+  centerControl(centerControlDiv, map);
+  map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(
+    centerControlDiv
+  );
+};
+
+export const generateHeatMapData = (sightingsInfo) => {
+  return sightingsInfo.sightings.map((sighting) => {
+    return new window.google.maps.LatLng(
+      parseInt(sighting.lat),
+      parseInt(sighting.long)
+    );
+  });
+};
+
 export const mapGradient = [
   "rgba(0, 255, 255, 0)", // less dense
   "rgba(0, 255, 255, 1)",
