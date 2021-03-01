@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "./ReportForm.scss";
 import { postSighting, geolocateUser } from "../../api";
 import ufoHover from "../../assets/ufo.png";
-import ufo from "../../assets/ufoFormPhoto.jpg";
+import ufo from "../../assets/ufoabduction.jpg";
 import { useDispatch } from "react-redux";
 import UploadWidget from "../UploadWidget/UploadWidget";
+import { Link } from "react-router-dom";
 
 const ReportForm = () => {
   const [eventType, setEventType] = useState("");
@@ -67,7 +68,7 @@ const ReportForm = () => {
   return (
     <form className="form">
       <img src={userImage} className="formPhoto" alt="ufo" />
-      <div className="form-inputs">
+      <article className="form-inputs">
         <div className="form__group field">
           <input
             type="input"
@@ -124,33 +125,49 @@ const ReportForm = () => {
             Description
           </label>
         </div>
-        <label>
-          Encounter Type
-          <select
-            value={eventType}
-            onChange={handleEventTypeChange}
-            className="drop-down"
-          >
-            <option disabled={eventType ? true : false}></option>
-            <option value="sighting">Sighting</option>
-            <option value="encounter">Encounter</option>
-            <option value="abduction">Abduction</option>
-          </select>
-        </label>
-        <UploadWidget data={handleImageUpload} />
-        <div className="container">
-          <a
-            href="/#"
-            target="_blank"
-            onClick={(event) => handleFormSubmit(event)}
-          >
-            <div className="button">
-              <span>Submit</span>
-            </div>
-            <img src={ufoHover} className="submit ufoIcon" alt="hovering ufo" />
-          </a>
-        </div>
-      </div>
+        <section className="image-upload">
+          <label className="encounter">
+            Encounter Type
+            <select
+              value={eventType}
+              onChange={handleEventTypeChange}
+              className="drop-down"
+            >
+              <option disabled={eventType ? true : false}></option>
+              <option value="sighting">Sighting</option>
+              <option value="encounter">Encounter</option>
+              <option value="abduction">Abduction</option>
+            </select>
+          </label>
+          <UploadWidget data={handleImageUpload} />
+        </section>
+        <section className="form-btns">
+          <div className="container">
+            <a
+              href="/#"
+              target="_blank"
+              onClick={(event) => handleFormSubmit(event)}
+            >
+              <div className="button">
+                <span>Submit</span>
+              </div>
+              <img src={ufoHover} className="submit ufoIcon" alt="hovering ufo" />
+            </a>
+          </div>
+          <div className="container">
+            <a
+              href="/#"
+              target="_blank"
+              onClick={(event) => handleFormSubmit(event)}
+            >
+              <div className="button">
+                  <span>Home</span>
+              </div>
+              <img src={ufoHover} className="submit ufoIcon" alt="hovering ufo" />
+            </a>
+          </div>
+        </section>
+      </article>
     </form>
   );
 };

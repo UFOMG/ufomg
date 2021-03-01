@@ -47,7 +47,6 @@ const SightingsFilter = () => {
         : generateStockImage(sighting.event_type);
       return (
         <article className="single-sighting">
-          {/* stock images based on event type if not image  */}
           <div className="stock-div">
             <img
               src={sightingImage}
@@ -56,11 +55,11 @@ const SightingsFilter = () => {
             />
           </div>
           <div className="sighting-details">
-            <h1>Name: {`${sighting.name}`}</h1>
-            <h1>City: {`${sighting.city}`}</h1>
-            <h1>Event Type: {`${sighting.event_type}`}</h1>
-            <h1>Description: {`${sighting.description}`}</h1>
-            <h1>Comments:</h1>
+            <h1 className="report-info">Name: {`${sighting.name}`}</h1>
+            <h1 className="report-info">City: {`${sighting.city}`}</h1>
+            <h1 className="report-info">Event Type: {`${sighting.event_type}`}</h1>
+            <h1 className="report-info">Description: {`${sighting.description}`}</h1>
+            <h1 className="report-info">Comments:</h1>
             {/* populate when BE has comments` */}
             <div className="comments-div">
               <h1 className="single-comment">
@@ -104,6 +103,7 @@ const SightingsFilter = () => {
                 about stuff
               </h1>
             </div>
+            <button className="add-comment">Add a comment...</button>
           </div>
         </article>
       );
@@ -138,9 +138,9 @@ const SightingsFilter = () => {
             {generateDropdownOptions()}
           </select>
         </aside>
-        <section className="filter-section">
-          {selectedState && displayFilteredSightings()}
-        </section>
+      </div>
+      <div className="filter-section">
+        {selectedState && displayFilteredSightings()}
       </div>
     </main>
   );
