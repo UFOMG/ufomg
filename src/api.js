@@ -2,6 +2,7 @@ import {
   fetchSightingsPending,
   fetchSightingsSuccess,
   fetchSightingsError,
+  fetchCommentsSuccess,
   postSightingsSuccess,
 } from "./actions";
 
@@ -18,6 +19,18 @@ const fetchSightings = (dispatch) => {
     })
     .catch((error) => {
       dispatch(fetchSightingsError(error));
+    });
+};
+
+export const fetchSingleSighting = (dispatch, id) => {
+  fetch(`https://ancient-mesa-60922.herokuapp.com/api/v1/reports/${id}`)
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.error) {
+        throw response.error;
+      }
+      dispatch(fetchCommentsSuccess(response));
+      return response;
     });
 };
 
@@ -38,6 +51,17 @@ export const postSighting = (sighting, dispatch) => {
     });
 };
 
+export const postComment = (id, text) => {
+  const comment = { report_id: id, text };
+  fetch("https://ancient-mesa-60922.herokuapp.com/api/v1/comments", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(comment),
+  });
+};
+
 export const geolocateUser = (city, state) => {
   const formatCity = city.split(" ").join("+");
   const formatState = state.split(" ").join("+");
@@ -48,9 +72,9 @@ export const geolocateUser = (city, state) => {
 
 // to display city state data on comment section with lat/long only storage
 export const reverseGeolocateUser = (lat, long) => {
-  return fetch (
+  return fetch(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${process.env.REACT_APP_API_KEY}`
-  )
-}
+  );
+};
 
 export default fetchSightings;
