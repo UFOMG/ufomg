@@ -47,7 +47,6 @@ const SightingsFilter = () => {
         : generateStockImage(sighting.event_type);
       return (
         <article className="single-sighting">
-          {/* stock images based on event type if not image  */}
           <div className="stock-div">
             <img
               src={sightingImage}
@@ -138,9 +137,9 @@ const SightingsFilter = () => {
             {generateDropdownOptions()}
           </select>
         </aside>
-        <section className="filter-section">
-          {selectedState && displayFilteredSightings()}
-        </section>
+      </div>
+      <div className="filter-section">
+        {selectedState && displayFilteredSightings()}
       </div>
     </main>
   );
