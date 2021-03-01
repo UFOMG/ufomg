@@ -1,14 +1,19 @@
 import React, { useState } from "react"
+import { useDispatch } from "react-redux";
+import { postComment } from "../../api";
 import "./CommentForm.scss"
 
-const CommentForm = () => {
+const CommentForm = ({ id }) => {
   const [name, setName] = useState("anonymous");
   const [comment, setComment] = useState('')
 
-  const handleCommentSubmit = (name, comment) => {
-    // pass down func as prop
-    // func will make post request to the sighting
-    // comment will rerender in commetn section
+  const dispatch = useDispatch();
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault()
+    const userComment = `${comment} ~${name}`
+    postComment(id, userComment, dispatch);
+    document.getElementById('comment-form').reset();
   }
 
   const handleNameChange = (event) => {
@@ -16,11 +21,12 @@ const CommentForm = () => {
   }
 
   const handleCommentChange = (event) => {
-    setComment(event.target.value)
+    const userComment = event.target.value
+    setComment(userComment)
   }
 
   return (
-    <form className="comment-form">
+    <form className="comment-form" id="comment-form" onSubmit={handleCommentSubmit}>
       <div className="form__group field">
           <input
             type="input"
@@ -48,6 +54,7 @@ const CommentForm = () => {
             Comment
           </label>
         </div>
+        <button className="btns">Comment</button>
     </form>
   )
 }

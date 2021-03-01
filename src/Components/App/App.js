@@ -12,6 +12,7 @@ function App() {
     <>
       <Switch>
         <Route exact path="/" component={MainPage} />
+        <Route exact path="/ufomg.github.io/ufomg/ufomg-fe" component={MainPage} />
         <Route exact path="/report-form" component={ReportForm} />
         <Route exact path="/sightings-map" component={MapDisplay} />
         <Route exact path="/sighting-research" component={SightingsFilter} />

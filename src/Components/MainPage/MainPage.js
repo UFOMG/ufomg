@@ -16,21 +16,21 @@ const MainPage = () => {
     <main className="main">
       <div className="main-content ">
         <section className='content'>
-          <div class="scene">
-          <div class="ufoWrap">
-          <div class='center'>
-            <div class="ufoInner">
+          <div className="scene">
+          <div className="ufoWrap">
+          <div className='center'>
+            <div className="ufoInner">
               <div id='ufo'>
-                <ul class='blinkers'>
+                <ul className='blinkers'>
                   <li></li>
                   <li></li>
                   <li></li>
                   <li></li>
                 </ul>
-                <div class="dome"></div>
-                <div class="antigrav">
-                  <div class="rings">
-                    <div class="inner"></div>
+                <div className="dome"></div>
+                <div className="antigrav">
+                  <div className="rings">
+                    <div className="inner"></div>
                     <ul>
                       <li></li>
                       <li></li>
@@ -102,7 +102,7 @@ const MainPage = () => {
                     </ul>
                   </div>
                 </div>
-                <div class="thrust">
+                <div className="thrust">
                   <ul>
                     <li></li>
                     <li></li>
@@ -118,8 +118,8 @@ const MainPage = () => {
             </div>
           </div>
           </div>
-          <div class="foreground">
-            <ul class="trees3">
+          <div className="foreground">
+            <ul className="trees3">
               <li></li>
               <li></li>
               <li></li>
@@ -137,7 +137,7 @@ const MainPage = () => {
               <li></li>
               <li></li>
             </ul>
-            <ul class="trees2">
+            <ul className="trees2">
               <li></li>
               <li></li>
               <li></li>
@@ -155,7 +155,7 @@ const MainPage = () => {
               <li></li>
               <li></li>
             </ul>
-            <ul class="trees1">
+            <ul className="trees1">
               <li></li>
               <li></li>
               <li></li>
@@ -174,75 +174,75 @@ const MainPage = () => {
               <li></li>
             </ul>
           </div>
-          <div class="background">
-            <div class="stars">
-              <li class="small"></li>
-              <li class="small"></li>
+          <div className="background">
+            <div className="stars">
+              <li className="small"></li>
+              <li className="small"></li>
               <li></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li class="small"></li>
-              <li></li>
-              <li></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li class="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
               <li></li>
               <li></li>
               <li></li>
-              <li></li>
-              <li class="small"></li>
-              <li></li>
-              <li class="small"></li>
-              <li class="small"></li>
+              <li className="small"></li>
               <li></li>
               <li></li>
-              <li class="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
               <li></li>
-              <li class="small"></li>
-              <li class="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
               <li></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li class="small"></li>
-              <li class="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li className="small"></li>
+              <li></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li></li>
+              <li></li>
+              <li className="small"></li>
+              <li></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
+              <li className="small"></li>
               <li></li>
               <li></li>    
             </div>
           </div>
           </div>
-          <div class="camera">
-              <div class="battery">
-                <div class="juice"></div>
+          <div className="camera">
+              <div className="battery">
+                <div className="juice"></div>
               </div>
-              <div class="rec">
+              <div className="rec">
                 <span><span></span>REC</span>
               </div>
-              <div class="meta">
+              <div className="meta">
                 <p>F2.3&nbsp;&nbsp;0dB&nbsp;&nbsp;15.7V 
-                  <span class="exposure">
-                    <span class="plus">+</span>
-                    <span class="minus">-</span>
+                  <span className="exposure">
+                    <span className="plus">+</span>
+                    <span className="minus">-</span>
                   </span>
                 </p>
               </div>
-              <div class="timer">
+              <div className="timer">
                 <label id="hours">00</label>:
                 <label id="minutes">00</label>:
                 <label id="seconds">00</label>
