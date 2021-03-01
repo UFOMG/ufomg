@@ -1,26 +1,32 @@
 {
   "files": {
-    "main.css": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.6ff7eddc.chunk.css",
-    "main.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.abc04c7f.chunk.js",
-    "main.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.abc04c7f.chunk.js.map",
+    "main.css": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.3da5172d.chunk.css",
+    "main.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.eb77eb59.chunk.js",
+    "main.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.eb77eb59.chunk.js.map",
     "runtime-main.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/runtime-main.3ce1362b.js",
     "runtime-main.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/runtime-main.3ce1362b.js.map",
-    "static/js/2.82f8a1c9.chunk.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.82f8a1c9.chunk.js",
-    "static/js/2.82f8a1c9.chunk.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.82f8a1c9.chunk.js.map",
+    "static/js/2.ea1160a2.chunk.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.ea1160a2.chunk.js",
+    "static/js/2.ea1160a2.chunk.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.ea1160a2.chunk.js.map",
     "index.html": "/ufomg.github.io/ufomg/ufomg-fe/index.html",
-    "static/css/main.6ff7eddc.chunk.css.map": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.6ff7eddc.chunk.css.map",
-    "static/js/2.82f8a1c9.chunk.js.LICENSE.txt": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.82f8a1c9.chunk.js.LICENSE.txt",
-    "static/media/alienmarker.e97df2e0.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/alienmarker.e97df2e0.png",
+    "static/css/main.3da5172d.chunk.css.map": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.3da5172d.chunk.css.map",
+    "static/js/2.ea1160a2.chunk.js.LICENSE.txt": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.ea1160a2.chunk.js.LICENSE.txt",
+    "static/media/alienmarker.b1725d72.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/alienmarker.b1725d72.png",
+    "static/media/alienstock.157bcffd.jpeg": "/ufomg.github.io/ufomg/ufomg-fe/static/media/alienstock.157bcffd.jpeg",
+    "static/media/blue-blur.7640ae6a.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/blue-blur.7640ae6a.png",
+    "static/media/green-blur.fee846fe.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/green-blur.fee846fe.png",
+    "static/media/lightsstock.3bb0aaf2.jpeg": "/ufomg.github.io/ufomg/ufomg-fe/static/media/lightsstock.3bb0aaf2.jpeg",
+    "static/media/red-blur.48392dab.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/red-blur.48392dab.png",
     "static/media/skylights.af9f465f.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/skylights.af9f465f.png",
     "static/media/ReportForm.scss": "/ufomg.github.io/ufomg/ufomg-fe/static/media/star-bg.c1ffa926.jpg",
     "static/media/ufo.1edcbb7b.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/ufo.1edcbb7b.png",
     "static/media/ufoFormPhoto.6e1761b8.jpg": "/ufomg.github.io/ufomg/ufomg-fe/static/media/ufoFormPhoto.6e1761b8.jpg",
-    "static/media/ufobeam.ea8231a2.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/ufobeam.ea8231a2.png"
+    "static/media/ufobeam.ea8231a2.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/ufobeam.ea8231a2.png",
+    "static/media/ufostock.4ce3bdeb.jpeg": "/ufomg.github.io/ufomg/ufomg-fe/static/media/ufostock.4ce3bdeb.jpeg"
   },
   "entrypoints": [
     "static/js/runtime-main.3ce1362b.js",
-    "static/js/2.82f8a1c9.chunk.js",
-    "static/css/main.6ff7eddc.chunk.css",
-    "static/js/main.abc04c7f.chunk.js"
+    "static/js/2.ea1160a2.chunk.js",
+    "static/css/main.3da5172d.chunk.css",
+    "static/js/main.eb77eb59.chunk.js"
   ]
 }
