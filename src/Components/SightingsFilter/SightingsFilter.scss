@@ -1,8 +1,12 @@
+
 .filter-main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: scroll;
+  background: url('https://media.giphy.com/media/UYBDCJjwOd9Re/giphy.gif');
 }
 
 .filter-div {
@@ -14,15 +18,25 @@
     flex-direction: column;
     align-items: center;
   }
-  .filter-section {
-    min-width: 50%;
-    overflow: auto;
-  }
+}
+
+.filter-section {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
 }
 
 .single-sighting {
+  width: 45%;
+  background: fixed;
+  margin: 10px;
+  height: 17%;
   display: flex;
-  border: 2px solid greenyellow;
+  flex-flow: column;
+  place-items: center;
+  border: 3px solid white;
+  overflow-wrap: anywhere;
 }
 
 .sighting-details {
@@ -30,22 +44,40 @@
   flex-direction: column;
   justify-content: space-around;
   margin-left: 10px;
+  font-size: small;
+  align-items: center;
+  height: 100%;
+
 }
 
 .sighting-image {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 95%;
+  max-height: 95%;
+  margin: 10px;
 }
 
 .comments-div {
-  border: 2px solid blueviolet;
   max-height: 300px;
   overflow: scroll;
   overflow-x: hidden;
+  height: 287px;
 }
 
 .single-comment {
-  border: 2px solid lightcoral;
+  // background: #000000;  /* fallback for old browsers */
+  // background: -webkit-linear-gradient(to bottom, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  // background: linear-gradient(to bottom, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  // border-radius: 9px;
+  // padding: 10px;
+  // margin: 4px;
+  // color: white;
+
+  border-radius: 9px;
+    padding: 10px;
+    margin: 4%;
+    background-color: white;
+    color: black;
+    height: fit-content;
 }
 
 .stock-div {
@@ -54,4 +86,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  display: contents;
+}
+
+h3 {
+  text-align: center;
+  width: 150%;
+  color: white;
+}
+
+.add-comment {
+  margin: 4%;
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  height: 11%;
+  border-radius: 5px;
+}
+
+.add-comment:hover {
+  margin: 4%;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  height: 11%;
+  border-radius: 5px;
+  cursor: grab;
+}
+
+.report-info {
+  margin: 1%;
+  color: white;
 }
