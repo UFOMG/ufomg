@@ -154,16 +154,6 @@ export const mapGradient = [
 export const libraries = ["places", "visualization"];
 
 export const centerControl = (controlDiv, map) => {
-  const uiStyle = {
-    backgroundColor: "#fff",
-    border: "2px solid #fff",
-    borderRadius: "3px",
-    boxShadow: "0 2px 6px rgba(0,0,0,.3)",
-    cursor: "pointer",
-    marginBottom: "22px",
-    marginTop: "10px",
-    textAlign: "center",
-  };
   // Set CSS for the control border.
   const controlUI = document.createElement("div");
   controlUI.id = "toggle-heatmap";
