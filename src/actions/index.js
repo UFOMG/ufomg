@@ -5,6 +5,7 @@ export const FETCH_SIGHTINGS_ERROR = "FETCH_SIGHTINGS_ERROR";
 export const FETCH_COMMENTS_SUCCESS = "FETCH_COMMENTS_SUCCESS";
 //  POST data
 export const POST_SIGHTINGS_SUCCESS = "POST_SIGHTINGS_SUCCESS";
+export const POST_COMMENT_SUCCESS = "POST_COMMENT_SUCCESS";
 
 export const fetchSightingsPending = () => {
   return {
@@ -26,6 +27,13 @@ export const fetchSightingsError = (error) => {
   };
 };
 
+export const fetchCommentsSuccess = (sighting) => {
+  return {
+    type: FETCH_COMMENTS_SUCCESS,
+    singleSighting: sighting,
+  };
+};
+
 export const postSightingsSuccess = (sighting) => {
   return {
     type: POST_SIGHTINGS_SUCCESS,
@@ -33,9 +41,9 @@ export const postSightingsSuccess = (sighting) => {
   };
 };
 
-export const fetchCommentsSuccess = (sighting) => {
+export const postCommentSuccess = (comment) => {
   return {
-    type: FETCH_COMMENTS_SUCCESS,
-    singleSighting: sighting,
-  };
-};
+    type: POST_COMMENT_SUCCESS,
+    comment
+  }
+}
