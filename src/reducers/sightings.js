@@ -4,6 +4,7 @@ import {
   FETCH_SIGHTINGS_ERROR,
   FETCH_COMMENTS_SUCCESS,
   POST_SIGHTINGS_SUCCESS,
+  POST_COMMENT_SUCCESS,
 } from "../actions";
 
 export const initialState = {
@@ -32,16 +33,27 @@ export const sightingsReducer = (state = initialState, action) => {
         pending: false,
         error: action.error,
       };
-    case POST_SIGHTINGS_SUCCESS:
-      return {
-        ...state,
-        sightings: [...state.sightings, action.sighting],
-      };
+
     case FETCH_COMMENTS_SUCCESS:
       return {
         ...state,
         singleSighting: action.singleSighting,
       };
+
+    case POST_SIGHTINGS_SUCCESS:
+      return {
+        ...state,
+        sightings: [...state.sightings, action.sighting],
+      };
+    case POST_COMMENT_SUCCESS:
+      return {
+        ...state,
+        singleSighting: {
+          ...state.singleSighting,
+          comments: [...state.singleSighting.comments, action.comment],
+        },
+      };
+
     default:
       return state;
   }
