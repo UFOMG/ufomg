@@ -4,6 +4,7 @@ import {
   fetchSightingsError,
   fetchCommentsSuccess,
   postSightingsSuccess,
+  postCommentSuccess,
 } from "./actions";
 
 const fetchSightings = (dispatch) => {
@@ -26,6 +27,7 @@ export const fetchSingleSighting = (dispatch, id) => {
   fetch(`https://ancient-mesa-60922.herokuapp.com/api/v1/reports/${id}`)
     .then((response) => response.json())
     .then((response) => {
+      console.log(response);
       if (response.error) {
         throw response.error;
       }
@@ -51,7 +53,7 @@ export const postSighting = (sighting, dispatch) => {
     });
 };
 
-export const postComment = (id, text) => {
+export const postComment = (id, text, dispatch) => {
   const comment = { report_id: id, text };
   fetch("https://ancient-mesa-60922.herokuapp.com/api/v1/comments", {
     method: "POST",
@@ -59,7 +61,14 @@ export const postComment = (id, text) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(comment),
-  });
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.error) {
+        throw response.error;
+      }
+      dispatch(postCommentSuccess(text));
+    });
 };
 
 export const geolocateUser = (city, state) => {
