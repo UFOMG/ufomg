@@ -13,7 +13,8 @@ const CommentPage = ({ id }) => {
   }, [dispatch, id]);
 
   const displayComments = () => {
-    return sightings.singleSighting.comments.map((comment, index) => {
+    const comments = sightings.singleSighting.comments;
+    return comments.map((comment, index) => {
       return (
         <div key={index} className="comment-div">
           <p>{comment}</p>
