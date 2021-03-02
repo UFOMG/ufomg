@@ -27,7 +27,6 @@ export const fetchSingleSighting = (dispatch, id) => {
   fetch(`https://ancient-mesa-60922.herokuapp.com/api/v1/reports/${id}`)
     .then((response) => response.json())
     .then((response) => {
-      console.log(response);
       if (response.error) {
         throw response.error;
       }

@@ -151,7 +151,11 @@ const ReportForm = () => {
               <div className="button">
                 <span>Submit</span>
               </div>
-              <img src={ufoHover} className="submit ufoIcon" alt="hovering ufo" />
+              <img
+                src={ufoHover}
+                className="submit ufoIcon"
+                alt="hovering ufo"
+              />
             </a>
           </div>
           <div className="container">
@@ -160,10 +164,16 @@ const ReportForm = () => {
               target="_blank"
               onClick={(event) => handleFormSubmit(event)}
             >
-              <div className="button">
+              <Link to="/">
+                <div className="button">
                   <span>Home</span>
-              </div>
-              <img src={ufoHover} className="submit ufoIcon" alt="hovering ufo" />
+                </div>
+              </Link>
+              <img
+                src={ufoHover}
+                className="submit ufoIcon"
+                alt="hovering ufo"
+              />
             </a>
           </div>
         </section>
