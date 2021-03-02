@@ -157,24 +157,29 @@ const ReportForm = () => {
                   <img src={ufoHover} className="submit ufoIcon" alt="hovering ufo" />
                 </a>
               </div>
-              <div className="container">
-                <a
-                  href="/#"
-                  target="_blank"
-                  onClick={(event) => handleFormSubmit(event)}
-                >
-                  <div className="button">
-                      <span>Home</span>
-                  </div>
-                  <img src={ufoHover} className="submit ufoIcon" alt="hovering ufo" />
-                </a>
-              </div>
+            <div className="container">
+            <a
+              href="/#"
+              target="_blank"
+              onClick={(event) => handleFormSubmit(event)}
+            >
+              <Link to="/">
+                <div className="button">
+                  <span>Home</span>
+                </div>
+              </Link>
+              <img
+                src={ufoHover}
+                className="submit ufoIcon"
+                alt="hovering ufo"
+              />
+            </a>
+          </div>
             </section>
           </article>
         </div>
       </form>
     </div>
-    
   );
 };
 
