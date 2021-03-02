@@ -256,13 +256,13 @@ const MainPage = () => {
             </div>
           </div>
           <div className="main-btns">
-            <Link to="/sightings-map">
+            <Link className="link-style" to="/sightings-map">
               <button className="btns">Sightings</button>
             </Link>
-            <Link to="/report-form">
+            <Link className="link-style" to="/report-form">
               <button className="btns">Report Sighting</button>
             </Link>
-            <Link to="/sighting-research">
+            <Link className="link-style" to="/sighting-research">
               <button className="btns">Research</button>
             </Link>
           </div>

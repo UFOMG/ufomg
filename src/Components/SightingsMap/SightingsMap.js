@@ -107,9 +107,11 @@ const SightingsMap = () => {
 
   return isLoaded ? (
     <main className="main-main">
-      <h1 className="glitch" data-text="UFOMG">
-        UFOMG
-      </h1>
+      <Link className="link-style" to="/">
+        <h1 className="glitch" data-text="UFOMG">
+          UFOMG
+        </h1>
+      </Link>
       <div className="button-div">
         <button onClick={toggleHeatMap} className="main-button">
           Toggle HeatMap
@@ -150,7 +152,7 @@ const SightingsMap = () => {
                 <p>{selectedSite.name ? selectedSite.name : "anonymous"}</p>
                 <p>{selectedSite.description}</p>
                 <p>{selectedSite.event_type}</p>
-                <Link to={`/comment-page/${selectedSite.id}`}>
+                <Link className="link-style" to={`/comment-page/${selectedSite.id}`}>
                   <button>Comment</button>
                 </Link>
               </div>

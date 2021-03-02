@@ -100,8 +100,8 @@ const SightingsFilter = () => {
             </h1>
             <h1 className="report-info">Comments:</h1>
             <div className="comments-div">{sightingComments}</div>
-            <Link to={`/comment-page/${sighting.id}`}>
-              <button className="add-comment">Add a comment...</button>
+            <Link className="link-style" to={`/comment-page/${sighting.id}`}>
+              <button className="btns">Add a comment...</button>
             </Link>
           </div>
         </article>
@@ -126,9 +126,11 @@ const SightingsFilter = () => {
 
   return (
     <main className="filter-main">
-      <h1 className="glitch" data-text="UFOMG">
-        UFOMG
-      </h1>
+      <Link className="link-style" to="/">
+        <h1 className="glitch" data-text="UFOMG">
+          UFOMG
+        </h1>
+      </Link>
       <div className="filter-div">
         <aside className="filter-aside">
           <h3>Show Sightings By State</h3>
