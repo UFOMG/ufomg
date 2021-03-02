@@ -28,7 +28,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const SightingsMap = () => {
-
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [selectedSite, setSelectedSite] = useState(null);
   const [showHeatMap, setShowHeatMap] = useState(true);

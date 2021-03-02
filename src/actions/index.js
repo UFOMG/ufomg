@@ -44,6 +44,6 @@ export const postSightingsSuccess = (sighting) => {
 export const postCommentSuccess = (comment) => {
   return {
     type: POST_COMMENT_SUCCESS,
-    comment
-  }
-}
+    comment,
+  };
+};
