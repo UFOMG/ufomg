@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.b4f9761a.chunk.css",
-    "main.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.551d0844.chunk.js",
-    "main.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.551d0844.chunk.js.map",
+    "main.css": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.b6f9b871.chunk.css",
+    "main.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.4237e044.chunk.js",
+    "main.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/main.4237e044.chunk.js.map",
     "runtime-main.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/runtime-main.3ce1362b.js",
     "runtime-main.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/runtime-main.3ce1362b.js.map",
-    "static/js/2.22a353cf.chunk.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.22a353cf.chunk.js",
-    "static/js/2.22a353cf.chunk.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.22a353cf.chunk.js.map",
+    "static/js/2.15d9a2ca.chunk.js": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.15d9a2ca.chunk.js",
+    "static/js/2.15d9a2ca.chunk.js.map": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.15d9a2ca.chunk.js.map",
     "index.html": "/ufomg.github.io/ufomg/ufomg-fe/index.html",
-    "static/css/main.b4f9761a.chunk.css.map": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.b4f9761a.chunk.css.map",
-    "static/js/2.22a353cf.chunk.js.LICENSE.txt": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.22a353cf.chunk.js.LICENSE.txt",
+    "static/css/main.b6f9b871.chunk.css.map": "/ufomg.github.io/ufomg/ufomg-fe/static/css/main.b6f9b871.chunk.css.map",
+    "static/js/2.15d9a2ca.chunk.js.LICENSE.txt": "/ufomg.github.io/ufomg/ufomg-fe/static/js/2.15d9a2ca.chunk.js.LICENSE.txt",
     "static/media/alienmarker.b1725d72.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/alienmarker.b1725d72.png",
     "static/media/alienstock.157bcffd.jpeg": "/ufomg.github.io/ufomg/ufomg-fe/static/media/alienstock.157bcffd.jpeg",
     "static/media/blue-blur.7640ae6a.png": "/ufomg.github.io/ufomg/ufomg-fe/static/media/blue-blur.7640ae6a.png",
@@ -24,8 +24,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.3ce1362b.js",
-    "static/js/2.22a353cf.chunk.js",
-    "static/css/main.b4f9761a.chunk.css",
-    "static/js/main.551d0844.chunk.js"
+    "static/js/2.15d9a2ca.chunk.js",
+    "static/css/main.b6f9b871.chunk.css",
+    "static/js/main.4237e044.chunk.js"
   ]
 }
