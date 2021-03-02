@@ -164,9 +164,11 @@ const ReportForm = () => {
               target="_blank"
               onClick={(event) => handleFormSubmit(event)}
             >
-              <div className="button">
-                <span>Home</span>
-              </div>
+              <Link to="/">
+                <div className="button">
+                  <span>Home</span>
+                </div>
+              </Link>
               <img
                 src={ufoHover}
                 className="submit ufoIcon"
