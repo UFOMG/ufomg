@@ -1,11 +1,26 @@
+
+
 .comment-image {
-  height: 500px;
-  width: 500px;
+  height: 50%;
+  width: 100%;
 }
 
 .comment-section {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: scroll;
+  background: url(https://media.giphy.com/media/UYBDCJjwOd9Re/giphy.gif);
+}
+
+.comment-article {
+  display: flex;
+
+  flex-flow: column;
+  align-items: center;
+  margin: 2%;
 }
 
 .comment-div {
@@ -14,10 +29,29 @@
   height: 50px;
 }
 .display-comment {
-  height: 350px;
   overflow: auto;
+  overflow: auto;
+  width: 600px;
+  height: 54%;
+  margin-top: 10%;
 }
 
 .comment-details {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sighting-card {
+  background: grey;
+  padding: 2%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1%;
+}
+
+h1 {
+  margin: 1%;
 }
