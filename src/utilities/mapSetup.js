@@ -128,8 +128,8 @@ const generateLegend = (map) => {
 export const generateHeatMapData = (sightingsInfo) => {
   return sightingsInfo.sightings.map((sighting) => {
     return new window.google.maps.LatLng(
-      parseInt(sighting.lat),
-      parseInt(sighting.long)
+      parseFloat(sighting.lat),
+      parseFloat(sighting.long)
     );
   });
 };
