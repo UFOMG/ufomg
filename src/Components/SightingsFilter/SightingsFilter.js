@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./SightingsFilter.scss";
 import { usStates } from "../../utilities/mapSetup";
 import { useSelector } from "react-redux";
+import { fetchSingleSighting } from "../../api";
 import alienstock from "../../assets/alienstock.jpeg";
 import lightsstock from "../../assets/lightsstock.jpeg";
 import ufostock from "../../assets/ufostock.jpeg";
@@ -27,6 +28,26 @@ const SightingsFilter = () => {
     });
   };
 
+  const getFilteredComments = (filteredSightings) => {
+    let filteredComments = [];
+    let updatedCommets = [];
+
+    filteredSightings.forEach((sighting) => {
+      filteredComments.push(
+        fetch(
+          `https://ancient-mesa-60922.herokuapp.com/api/v1/reports/${sighting.id}`
+        ).then((response) => response.json())
+      );
+    });
+
+    Promise.all(filteredComments).then((data) => {
+      data.forEach((sighting) => {
+        updatedCommets.push(sighting);
+      });
+    });
+    return updatedCommets;
+  };
+
   const generateStockImage = (eventType) => {
     switch (eventType) {
       case "sighting":
@@ -41,12 +62,18 @@ const SightingsFilter = () => {
   };
 
   const generateFilteredSightings = (sightings) => {
-    return sightings.map((sighting) => {
+    return sightings.map((sighting, index) => {
       const sightingImage = sighting.image
         ? sighting.image
         : generateStockImage(sighting.event_type);
+
+      // const displyComments = sighting.comments.map(comment => {
+      //   return (
+      //     `<h1 className="single-comment">${comment}</h1>`
+      //   )
+      // })
       return (
-        <article className="single-sighting">
+        <article key={index} className="single-sighting">
           <div className="stock-div">
             <img
               src={sightingImage}
@@ -57,52 +84,15 @@ const SightingsFilter = () => {
           <div className="sighting-details">
             <h1 className="report-info">Name: {`${sighting.name}`}</h1>
             <h1 className="report-info">City: {`${sighting.city}`}</h1>
-            <h1 className="report-info">Event Type: {`${sighting.event_type}`}</h1>
-            <h1 className="report-info">Description: {`${sighting.description}`}</h1>
+            <h1 className="report-info">
+              Event Type: {`${sighting.event_type}`}
+            </h1>
+            <h1 className="report-info">
+              Description: {`${sighting.description}`}
+            </h1>
             <h1 className="report-info">Comments:</h1>
             {/* populate when BE has comments` */}
-            <div className="comments-div">
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-            </div>
+            <div className="comments-div">{/* {displyComments} */}</div>
             <button className="add-comment">Add a comment...</button>
           </div>
         </article>
@@ -116,6 +106,10 @@ const SightingsFilter = () => {
 
   const displayFilteredSightings = () => {
     const filteredSightings = filterSightings(selectedState);
+    const finalFilter = getFilteredComments(filteredSightings);
+    console.log(finalFilter);
+    console.log(filteredSightings);
+    // pass other one ?
     return generateFilteredSightings(filteredSightings);
   };
 
