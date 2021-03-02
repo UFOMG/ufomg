@@ -29,24 +29,27 @@ const CommentPage = ({ id }) => {
 
   return (
     <section className="comment-section">
-      <div className="comment-details">
-        <img
-          src={sightings.singleSighting.image}
-          className="comment-image"
-          alt={sightings.singleSighting.event_type}
-        />
-        <article className="comment-article">
-          <h1>Name: {sightings.singleSighting.name}</h1>
-          <h1>
-            City/State: {sightings.singleSighting.city},{" "}
-            {sightings.singleSighting.state}
-          </h1>
-          <h1>Description: {sightings.singleSighting.description}</h1>
-          <h1>Comments:</h1>
-          <div className="display-comment">{displayUpdates}</div>
-        </article>
+      <h1 className="glitch" data-text="UFOMG">UFOMG</h1>
+      <div className="sighting-card">
+        <div className="comment-details">
+          <img
+            src={sightings.singleSighting.image}
+            className="comment-image"
+            alt={sightings.singleSighting.event_type}
+          />
+          <article className="comment-article">
+            <h1>Name: {sightings.singleSighting.name}</h1>
+            <h1>
+              City/State: {sightings.singleSighting.city},{" "}
+              {sightings.singleSighting.state}
+            </h1>
+            <h1>Description: {sightings.singleSighting.description}</h1>
+            <h1>Comments:</h1>
+            <div className="display-comment">{displayUpdates}</div>
+          </article>
+        </div>
+        <CommentForm id={id} />
       </div>
-      <CommentForm id={id} />
     </section>
   );
 };

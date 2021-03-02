@@ -66,99 +66,98 @@ const ReportForm = () => {
   const userImage = imageUrl ? imageUrl : ufo;
 
   return (
-    <form className="form">
-      <img src={userImage} className="formPhoto" alt="ufo" />
-      <article className="form-inputs">
-        <div className="form__group field">
-          <input
-            type="input"
-            className="form__field"
-            placeholder="Name"
-            name="name"
-            id="name"
-            onChange={handleNameChange}
-            required
-          />
-          <label htmlFor="name" className="form__label">
-            Name
-          </label>
-        </div>
-        <div className="form__group field">
-          <input
-            type="input"
-            className="form__field"
-            placeholder="City"
-            name="city"
-            id="city"
-            onChange={handleCityChange}
-            required
-          />
-          <label htmlFor="city" className="form__label">
-            City
-          </label>
-        </div>
-        <div className="form__group field">
-          <input
-            type="input"
-            className="form__field"
-            placeholder="State"
-            name="state"
-            id="state"
-            onChange={handleUsStateChange}
-            required
-          />
-          <label htmlFor="state" className="form__label">
-            State
-          </label>
-        </div>
-        <div className="form__group field">
-          <input
-            type="input"
-            className="form__field"
-            placeholder="Description"
-            name="desciption"
-            id="description"
-            onChange={handleDescriptionChange}
-            required
-          />
-          <label htmlFor="description" className="form__label">
-            Description
-          </label>
-        </div>
-        <section className="image-upload">
-          <label className="encounter">
-            Encounter Type
-            <select
-              value={eventType}
-              onChange={handleEventTypeChange}
-              className="drop-down"
-            >
-              <option disabled={eventType ? true : false}></option>
-              <option value="sighting">Sighting</option>
-              <option value="encounter">Encounter</option>
-              <option value="abduction">Abduction</option>
-            </select>
-          </label>
-          <UploadWidget data={handleImageUpload} />
-        </section>
-        <section className="form-btns">
-          <div className="container">
-            <a
-              href="/#"
-              target="_blank"
-              onClick={(event) => handleFormSubmit(event)}
-            >
-              <div className="button">
-                <span>Submit</span>
-              </div>
-              <img
-                src={ufoHover}
-                className="submit ufoIcon"
-                alt="hovering ufo"
+    <div className="form-container">
+      <form className="full-form">
+        <h1 className="glitch" data-text="UFOMG">UFOMG</h1>
+        <div className="form">
+          <img src={userImage} className="formPhoto" alt="ufo" />
+          <article className="form-inputs">
+            <div className="form__group field">
+              <input
+                type="input"
+                className="form__field"
+                placeholder="Name"
+                name="name"
+                id="name"
+                onChange={handleNameChange}
+                required
               />
-            </a>
-          </div>
-          <div className="container">
+              <label htmlFor="name" className="form__label">
+                Name
+              </label>
+            </div>
+            <div className="form__group field">
+              <input
+                type="input"
+                className="form__field"
+                placeholder="City"
+                name="city"
+                id="city"
+                onChange={handleCityChange}
+                required
+              />
+              <label htmlFor="city" className="form__label">
+                City
+              </label>
+            </div>
+            <div className="form__group field">
+              <input
+                type="input"
+                className="form__field"
+                placeholder="State"
+                name="state"
+                id="state"
+                onChange={handleUsStateChange}
+                required
+              />
+              <label htmlFor="state" className="form__label">
+                State
+              </label>
+            </div>
+            <div className="form__group field">
+              <input
+                type="input"
+                className="form__field"
+                placeholder="Description"
+                name="desciption"
+                id="description"
+                onChange={handleDescriptionChange}
+                required
+              />
+              <label htmlFor="description" className="form__label">
+                Description
+              </label>
+            </div>
+            <section className="image-upload">
+              <label className="encounter">
+                Encounter Type
+                <select
+                  value={eventType}
+                  onChange={handleEventTypeChange}
+                  className="drop-down"
+                >
+                  <option disabled={eventType ? true : false}></option>
+                  <option value="sighting">Sighting</option>
+                  <option value="encounter">Encounter</option>
+                  <option value="abduction">Abduction</option>
+                </select>
+              </label>
+              <UploadWidget data={handleImageUpload} />
+            </section>
+            <section className="form-btns">
+              <div className="container">
+                <a
+                  href="/#"
+                  target="_blank"
+                  onClick={(event) => handleFormSubmit(event)}
+                >
+                  <div className="button">
+                    <span>Submit</span>
+                  </div>
+                  <img src={ufoHover} className="submit ufoIcon" alt="hovering ufo" />
+                </a>
+              </div>
+            <div className="container">
             <a
               href="/#"
               target="_blank"
@@ -176,9 +175,11 @@ const ReportForm = () => {
               />
             </a>
           </div>
-        </section>
-      </article>
-    </form>
+            </section>
+          </article>
+        </div>
+      </form>
+    </div>
   );
 };
 
