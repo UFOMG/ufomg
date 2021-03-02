@@ -9,7 +9,7 @@ import ufostock from "../../assets/ufostock.jpeg";
 
 const SightingsFilter = () => {
   const [selectedState, setSelectedState] = useState("");
-  const [filteredSightingComments, setFilteredSightingComments] = useState([])
+  const [filteredSightingComments, setFilteredSightingComments] = useState([]);
   const sightings = useSelector((state) => state.sightingsReducer);
 
   const generateDropdownOptions = () => {
@@ -42,7 +42,7 @@ const SightingsFilter = () => {
     }
   };
 
-  const getFilteredComments =  (filteredSightings) => {
+  const getFilteredComments = (filteredSightings) => {
     let filteredComments = [];
     let updatedComments = [];
 
@@ -61,15 +61,19 @@ const SightingsFilter = () => {
       return updatedComments;
     });
   };
-  
+
+  const generateCommentsDisplay = (comments) => {
+    return comments.map((comment) => {
+      return <h1 className="single-comment">{`${comment}`}</h1>;
+    });
+  };
 
   const generateFilteredSightings = (sightings) => {
     return sightings.map((sighting) => {
-
       const sightingImage = sighting.image
         ? sighting.image
         : generateStockImage(sighting.event_type);
-        
+
       return (
         <article className="single-sighting">
           <div className="stock-div">
@@ -89,48 +93,8 @@ const SightingsFilter = () => {
               Description: {`${sighting.description}`}
             </h1>
             <h1 className="report-info">Comments:</h1>
-            {/* populate when BE has comments` */}
             <div className="comments-div">
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
-              <h1 className="single-comment">
-                USERNAME: holy crap this ia a lot of comments, so many comments
-                about stuff
-              </h1>
+              {generateCommentsDisplay(sighting.comments)}
             </div>
             <Link to={`/comment-page/${sighting.id}`}>
               <button className="add-comment">Add a comment...</button>
@@ -147,7 +111,7 @@ const SightingsFilter = () => {
 
   useEffect(() => {
     displayFilteredSightings();
-  }, [selectedState])
+  }, [selectedState]);
 
   const displayFilteredSightings = async () => {
     const filteredSightings = filterSightings(selectedState);
@@ -155,7 +119,7 @@ const SightingsFilter = () => {
 
     console.log(test);
 
-    return setFilteredSightingComments(test)
+    return setFilteredSightingComments(test);
   };
 
   return (
@@ -179,7 +143,8 @@ const SightingsFilter = () => {
         </aside>
       </div>
       <div className="filter-section">
-        {filteredSightingComments.length && generateFilteredSightings(filteredSightingComments)}
+        {filteredSightingComments &&
+          generateFilteredSightings(filteredSightingComments)}
       </div>
     </main>
   );
