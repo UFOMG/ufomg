@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SightingsFilter.scss";
+import { Link } from "react-router-dom";
 import { usStates } from "../../utilities/mapSetup";
 import { useSelector } from "react-redux";
-import { fetchSingleSighting } from "../../api";
 import alienstock from "../../assets/alienstock.jpeg";
 import lightsstock from "../../assets/lightsstock.jpeg";
 import ufostock from "../../assets/ufostock.jpeg";
 
 const SightingsFilter = () => {
   const [selectedState, setSelectedState] = useState("");
+  const [filteredSightingComments, setFilteredSightingComments] = useState([])
   const sightings = useSelector((state) => state.sightingsReducer);
 
   const generateDropdownOptions = () => {
@@ -28,26 +29,6 @@ const SightingsFilter = () => {
     });
   };
 
-  const getFilteredComments = (filteredSightings) => {
-    let filteredComments = [];
-    let updatedCommets = [];
-
-    filteredSightings.forEach((sighting) => {
-      filteredComments.push(
-        fetch(
-          `https://ancient-mesa-60922.herokuapp.com/api/v1/reports/${sighting.id}`
-        ).then((response) => response.json())
-      );
-    });
-
-    Promise.all(filteredComments).then((data) => {
-      data.forEach((sighting) => {
-        updatedCommets.push(sighting);
-      });
-    });
-    return updatedCommets;
-  };
-
   const generateStockImage = (eventType) => {
     switch (eventType) {
       case "sighting":
@@ -61,19 +42,36 @@ const SightingsFilter = () => {
     }
   };
 
+  const getFilteredComments =  (filteredSightings) => {
+    let filteredComments = [];
+    let updatedComments = [];
+
+    filteredSightings.forEach((sighting) => {
+      filteredComments.push(
+        fetch(
+          `https://ancient-mesa-60922.herokuapp.com/api/v1/reports/${sighting.id}`
+        ).then((response) => response.json())
+      );
+    });
+
+    return Promise.all(filteredComments).then((data) => {
+      data.forEach((sighting) => {
+        updatedComments.push(sighting);
+      });
+      return updatedComments;
+    });
+  };
+  
+
   const generateFilteredSightings = (sightings) => {
-    return sightings.map((sighting, index) => {
+    return sightings.map((sighting) => {
+
       const sightingImage = sighting.image
         ? sighting.image
         : generateStockImage(sighting.event_type);
-
-      // const displyComments = sighting.comments.map(comment => {
-      //   return (
-      //     `<h1 className="single-comment">${comment}</h1>`
-      //   )
-      // })
+        
       return (
-        <article key={index} className="single-sighting">
+        <article className="single-sighting">
           <div className="stock-div">
             <img
               src={sightingImage}
@@ -92,8 +90,51 @@ const SightingsFilter = () => {
             </h1>
             <h1 className="report-info">Comments:</h1>
             {/* populate when BE has comments` */}
-            <div className="comments-div">{/* {displyComments} */}</div>
-            <button className="add-comment">Add a comment...</button>
+            <div className="comments-div">
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+              <h1 className="single-comment">
+                USERNAME: holy crap this ia a lot of comments, so many comments
+                about stuff
+              </h1>
+            </div>
+            <Link to={`/comment-page/${sighting.id}`}>
+              <button className="add-comment">Add a comment...</button>
+            </Link>
           </div>
         </article>
       );
@@ -104,13 +145,17 @@ const SightingsFilter = () => {
     setSelectedState(event.target.value);
   };
 
-  const displayFilteredSightings = () => {
+  useEffect(() => {
+    displayFilteredSightings();
+  }, [selectedState])
+
+  const displayFilteredSightings = async () => {
     const filteredSightings = filterSightings(selectedState);
-    const finalFilter = getFilteredComments(filteredSightings);
-    console.log(finalFilter);
-    console.log(filteredSightings);
-    // pass other one ?
-    return generateFilteredSightings(filteredSightings);
+    const test = await getFilteredComments(filteredSightings);
+
+    console.log(test);
+
+    return setFilteredSightingComments(test)
   };
 
   return (
@@ -134,7 +179,7 @@ const SightingsFilter = () => {
         </aside>
       </div>
       <div className="filter-section">
-        {selectedState && displayFilteredSightings()}
+        {filteredSightingComments.length && generateFilteredSightings(filteredSightingComments)}
       </div>
     </main>
   );
