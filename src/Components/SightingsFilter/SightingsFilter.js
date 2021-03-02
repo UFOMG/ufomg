@@ -63,13 +63,19 @@ const SightingsFilter = () => {
   };
 
   const generateCommentsDisplay = (comments) => {
-    return comments.map((comment) => {
-      return <h1 className="single-comment">{`${comment}`}</h1>;
-    });
+    if (comments.length > 0) {
+      return comments.map((comment) => {
+        return <h1 className="single-comment">{`${comment}`}</h1>;
+      });
+    } else {
+      return <h1 className="single-comment">No comments yet</h1>;
+    }
   };
 
   const generateFilteredSightings = (sightings) => {
     return sightings.map((sighting) => {
+      const sightingComments = generateCommentsDisplay(sighting.comments);
+
       const sightingImage = sighting.image
         ? sighting.image
         : generateStockImage(sighting.event_type);
@@ -93,9 +99,7 @@ const SightingsFilter = () => {
               Description: {`${sighting.description}`}
             </h1>
             <h1 className="report-info">Comments:</h1>
-            <div className="comments-div">
-              {generateCommentsDisplay(sighting.comments)}
-            </div>
+            <div className="comments-div">{sightingComments}</div>
             <Link to={`/comment-page/${sighting.id}`}>
               <button className="add-comment">Add a comment...</button>
             </Link>
@@ -115,11 +119,9 @@ const SightingsFilter = () => {
 
   const displayFilteredSightings = async () => {
     const filteredSightings = filterSightings(selectedState);
-    const test = await getFilteredComments(filteredSightings);
+    const sightingsWithComments = await getFilteredComments(filteredSightings);
 
-    console.log(test);
-
-    return setFilteredSightingComments(test);
+    return setFilteredSightingComments(sightingsWithComments);
   };
 
   return (
