@@ -13,6 +13,18 @@ $black: black;
   background: url("https://media.giphy.com/media/UYBDCJjwOd9Re/giphy.gif");
 }
 
+.form-container {
+  overflow: scroll;
+  height: 100vh;
+}
+
+.full-form {
+  display: flex;
+  flex-flow: column;
+  background: url(https://media.giphy.com/media/UYBDCJjwOd9Re/giphy.gif);
+  align-items: center;
+}
+
 .form-inputs {
   display: flex;
   flex-direction: column;
