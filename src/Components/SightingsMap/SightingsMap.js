@@ -74,7 +74,6 @@ const SightingsMap = () => {
         lat: parseFloat(sighting.lat),
         lng: parseFloat(sighting.long),
       };
-      console.log(position.lat);
       const iconData =
         iconType === generateEventIcons
           ? sighting.event_type
