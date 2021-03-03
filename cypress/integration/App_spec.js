@@ -18,14 +18,30 @@ describe('App', () => {
     cy.get('[style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;"]')
   })
 
-  it.only('should allow users to view a sightings details', () => {
+  it('should allow users to view a sightings details', () => {
     cy.visit('http://localhost:3000/')
 
     cy.get('[href="/sightings-map"] > .btns').click()
     cy.url().should('include', '/sightings-map')
 
-    cy.get('[style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"] > :nth-child(57) > img').click()
-    cy.get('.gm-style-iw-d > :nth-child(1) > :nth-child(1) > div > :nth-child(2)').should('contain', 'it was chill')
+    cy.get('[style="width: 50px; height: 50px; overflow: hidden; position: absolute; cursor: pointer; touch-action: none; left: -240px; top: -209px; z-index: -159;"] > img').click()
+    cy.get('.gm-style-iw-d > :nth-child(1) > :nth-child(1) > div > :nth-child(2)').should('contain', 'I Went to space')
+  })
+
+  it.skip('should allow users to comment on a sighting', () => {
+    cy.visit('http://localhost:3000/')
+
+    cy.get('[href="/sightings-map"] > .btns').click()
+    cy.url().should('include', '/sightings-map')
+
+    cy.get('[style="width: 50px; height: 50px; overflow: hidden; position: absolute; cursor: pointer; touch-action: none; left: -240px; top: -209px; z-index: -159;"] > img').click()
+    cy.get('a > button').click()
+    cy.get('#comment-form > :nth-child(1)')
+      .type('Michael Schenker')
+    cy.get('#comment-form > :nth-child(2)')
+      .type('cool comment about ufo')
+    cy.get('.btns').click()
+    cy.get('.display-comment > :nth-child(1)').should('contain', 'cool comment about ufo ~Michael Schenker')
   })
 
   it('should allow users to fill out a sighting form and submit', () => {
