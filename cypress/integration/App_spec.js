@@ -69,4 +69,12 @@ describe('App', () => {
     cy.get('[href="/sightings-map"] > .btns').click()
     cy.get('[style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"] > :nth-child(79) > img')
   })
+
+  it('should allow users to view sightings by state', () => {
+    cy.visit('http://localhost:3000/')
+
+    cy.get('[href="/sighting-research"] > .btns').should('contain', 'Research').click()
+    cy.get('.drop-down').select('TENNESSEE')
+    cy.get('.filter-section > :nth-child(1)').should('contain', 'City: Gallatin')
+  })
 })
