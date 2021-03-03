@@ -48,8 +48,8 @@ const SightingsFilter = () => {
 
   const generateCommentsDisplay = (comments) => {
     if (comments.length > 0) {
-      return comments.map((comment) => {
-        return <h1 className="single-comment">{`${comment}`}</h1>;
+      return comments.map((comment, index) => {
+        return <h1 key={index} className="single-comment">{`${comment}`}</h1>;
       });
     } else {
       return <h1 className="single-comment">No comments yet</h1>;
