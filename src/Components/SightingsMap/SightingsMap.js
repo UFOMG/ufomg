@@ -61,7 +61,6 @@ const SightingsMap = () => {
   const addParsedDate = () => {
     return sightings.sightings.map((sighting) => {
       const seperateDate = sighting.created_at;
-      console.log(seperateDate);
       const dateSplit = seperateDate.split(",")[0];
       const parsedDate = Date.parse(dateSplit);
       return {
@@ -78,7 +77,6 @@ const SightingsMap = () => {
         lng: parseFloat(sighting.long),
       };
       const iconData =
-      // bug here no data passed
         iconType === generateEventIcons
           ? sighting.event_type
           : sighting.created_at;
@@ -137,7 +135,6 @@ const SightingsMap = () => {
             data={generateHeatMapData(sightings)}
           />
         )}
-        {/* bug issue here */}
         {!showRecentActivity &&
           createMarkers(sightings.sightings, generateEventIcons, [
             lights,
