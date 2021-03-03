@@ -12,6 +12,13 @@
   // background-image: url('../../assets/star-bg.jpg')
 }
 
+.link-style:visited,
+.link-style:after,
+.link-style:before,
+.link-style:link {
+  text-decoration: none;
+}
+
 .alien-logo {
   height: 50vh;
   // width: 35vw;
@@ -174,7 +181,6 @@ html {
   );
 }
 body {
-  overflow: hidden;
   width: 100%;
 }
 .scene {

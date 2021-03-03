@@ -68,7 +68,11 @@ const ReportForm = () => {
   return (
     <div className="form-container">
       <form className="full-form">
-        <h1 className="glitch" data-text="UFOMG">UFOMG</h1>
+        <Link className="link-style" to="/">
+          <h1 className="glitch" data-text="UFOMG">
+            UFOMG
+          </h1>
+        </Link>
         <div className="form">
           <img src={userImage} className="formPhoto" alt="ufo" />
           <article className="form-inputs">
@@ -151,30 +155,36 @@ const ReportForm = () => {
                   target="_blank"
                   onClick={(event) => handleFormSubmit(event)}
                 >
-                  <div className="button">
-                    <span>Submit</span>
-                  </div>
-                  <img src={ufoHover} className="submit ufoIcon" alt="hovering ufo" />
+                  <Link className="link-style" to="/sightings-map">
+                    <div className="button">
+                      <span>Submit</span>
+                    </div>
+                  </Link>
+                  <img
+                    src={ufoHover}
+                    className="submit ufoIcon"
+                    alt="hovering ufo"
+                  />
                 </a>
               </div>
-            <div className="container">
-            <a
-              href="/#"
-              target="_blank"
-              onClick={(event) => handleFormSubmit(event)}
-            >
-              <Link to="/">
-                <div className="button">
-                  <span>Home</span>
-                </div>
-              </Link>
-              <img
-                src={ufoHover}
-                className="submit ufoIcon"
-                alt="hovering ufo"
-              />
-            </a>
-          </div>
+              <div className="container">
+                <a
+                  href="/#"
+                  target="_blank"
+                  onClick={(event) => handleFormSubmit(event)}
+                >
+                  <Link className="link-style" to="/">
+                    <div className="button">
+                      <span>Home</span>
+                    </div>
+                  </Link>
+                  <img
+                    src={ufoHover}
+                    className="submit ufoIcon"
+                    alt="hovering ufo"
+                  />
+                </a>
+              </div>
             </section>
           </article>
         </div>

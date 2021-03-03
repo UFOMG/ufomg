@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./SightingsFilter.scss";
 import { Link } from "react-router-dom";
-import { usStates } from "../../utilities/mapSetup";
+import { usStates, generateStockImage } from "../../utilities/mapSetup";
 import { useSelector } from "react-redux";
-import alienstock from "../../assets/alienstock.jpeg";
-import lightsstock from "../../assets/lightsstock.jpeg";
-import ufostock from "../../assets/ufostock.jpeg";
 
 const SightingsFilter = () => {
   const [selectedState, setSelectedState] = useState("");
@@ -29,19 +26,6 @@ const SightingsFilter = () => {
     });
   };
 
-  const generateStockImage = (eventType) => {
-    switch (eventType) {
-      case "sighting":
-        return lightsstock;
-      case "encounter":
-        return alienstock;
-      case "abduction":
-        return ufostock;
-      default:
-        return lightsstock;
-    }
-  };
-
   const getFilteredComments = (filteredSightings) => {
     let filteredComments = [];
     let updatedComments = [];
@@ -63,13 +47,19 @@ const SightingsFilter = () => {
   };
 
   const generateCommentsDisplay = (comments) => {
-    return comments.map((comment) => {
-      return <h1 className="single-comment">{`${comment}`}</h1>;
-    });
+    if (comments.length > 0) {
+      return comments.map((comment, index) => {
+        return <h1 key={index} className="single-comment">{`${comment}`}</h1>;
+      });
+    } else {
+      return <h1 className="single-comment">No comments yet</h1>;
+    }
   };
 
   const generateFilteredSightings = (sightings) => {
     return sightings.map((sighting) => {
+      const sightingComments = generateCommentsDisplay(sighting.comments);
+
       const sightingImage = sighting.image
         ? sighting.image
         : generateStockImage(sighting.event_type);
@@ -93,11 +83,9 @@ const SightingsFilter = () => {
               Description: {`${sighting.description}`}
             </h1>
             <h1 className="report-info">Comments:</h1>
-            <div className="comments-div">
-              {generateCommentsDisplay(sighting.comments)}
-            </div>
-            <Link to={`/comment-page/${sighting.id}`}>
-              <button className="add-comment">Add a comment...</button>
+            <div className="comments-div">{sightingComments}</div>
+            <Link className="link-style" to={`/comment-page/${sighting.id}`}>
+              <button className="btns">Add a comment...</button>
             </Link>
           </div>
         </article>
@@ -115,18 +103,18 @@ const SightingsFilter = () => {
 
   const displayFilteredSightings = async () => {
     const filteredSightings = filterSightings(selectedState);
-    const test = await getFilteredComments(filteredSightings);
+    const sightingsWithComments = await getFilteredComments(filteredSightings);
 
-    console.log(test);
-
-    return setFilteredSightingComments(test);
+    return setFilteredSightingComments(sightingsWithComments);
   };
 
   return (
     <main className="filter-main">
-      <h1 className="glitch" data-text="UFOMG">
-        UFOMG
-      </h1>
+      <Link className="link-style" to="/">
+        <h1 className="glitch" data-text="UFOMG">
+          UFOMG
+        </h1>
+      </Link>
       <div className="filter-div">
         <aside className="filter-aside">
           <h3>Show Sightings By State</h3>

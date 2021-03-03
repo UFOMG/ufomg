@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleSighting } from "../../api";
 import CommentForm from "../CommentForm/CommentForm";
+import { Link } from "react-router-dom";
 import "./CommentPage.scss";
 
 const CommentPage = ({ id }) => {
@@ -29,7 +30,11 @@ const CommentPage = ({ id }) => {
 
   return (
     <section className="comment-section">
-      <h1 className="glitch" data-text="UFOMG">UFOMG</h1>
+      <Link className="link-style" to="/">
+        <h1 className="glitch" data-text="UFOMG">
+          UFOMG
+        </h1>
+      </Link>
       <div className="sighting-card">
         <div className="comment-details">
           <img
