@@ -26,3 +26,14 @@
     margin-right: 20px;
   }
 }
+
+.map-info-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  h1 {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+  }
+}
