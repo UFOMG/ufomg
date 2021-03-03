@@ -6,6 +6,9 @@ import lights from "../assets/skylights.png";
 import blueBlur from "../assets/blue-blur.png";
 import greenBlur from "../assets/green-blur.png";
 import redBlur from "../assets/red-blur.png";
+import alienstock from "../assets/alienstock.jpeg";
+import lightsstock from "../assets/lightsstock.jpeg";
+import ufostock from "../assets/ufostock.jpeg";
 
 export const containerStyle = {
   width: "90vw",
@@ -15,6 +18,19 @@ export const containerStyle = {
 export const mapCenter = {
   lat: 39.8283,
   lng: -98.5795,
+};
+
+export const generateStockImage = (eventType) => {
+  switch (eventType) {
+    case "sighting":
+      return lightsstock;
+    case "encounter":
+      return alienstock;
+    case "abduction":
+      return ufostock;
+    default:
+      return lightsstock;
+  }
 };
 
 export const generateEventIcons = (eventType, images) => {
