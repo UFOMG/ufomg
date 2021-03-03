@@ -23,6 +23,7 @@ import {
   generateDateIcons,
   handleOnLoad,
   generateHeatMapData,
+  generateStockImage
 } from "../../utilities/mapSetup";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -71,7 +72,7 @@ const SightingsMap = () => {
     return sightingsInfo.map((sighting, index) => {
       const position = {
         lat: parseFloat(sighting.lat),
-        lng: parseFloat(sighting.long)
+        lng: parseFloat(sighting.long),
       };
       console.log(position.lat);
       const iconData =
@@ -149,17 +150,31 @@ const SightingsMap = () => {
           >
             <div>
               <div>
-                <p>{selectedSite.name ? selectedSite.name : "anonymous"}</p>
-                <p>{selectedSite.description}</p>
-                <p>{selectedSite.event_type}</p>
-                <Link className="link-style" to={`/comment-page/${selectedSite.id}`}>
-                  <button>Comment</button>
+                <div className="map-info-div">
+                  <h1>
+                    <span>Name:</span> {selectedSite.name ? selectedSite.name : "anonymous"}
+                  </h1>
+                  <h1><span>Description:</span> {selectedSite.description}</h1>
+                  <h1><span>Event:</span> {selectedSite.event_type}</h1>
+                </div>
+                <Link
+                  className="link-style"
+                  to={`/comment-page/${selectedSite.id}`}
+                >
+                  <button className="button">Comment</button>
                 </Link>
               </div>
               {selectedSite.image && (
                 <img
                   className="site-image"
                   src={selectedSite.image}
+                  alt={`alien ${selectedSite.event_type}`}
+                />
+              )}
+              {!selectedSite.image && (
+                <img
+                  className="site-image"
+                  src={generateStockImage(selectedSite.event_type)}
                   alt={`alien ${selectedSite.event_type}`}
                 />
               )}
