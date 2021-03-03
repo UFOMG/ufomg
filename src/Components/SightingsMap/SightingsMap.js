@@ -49,8 +49,6 @@ const SightingsMap = () => {
       return b.parsedDate - a.parsedDate;
     });
 
-    console.log(formatSightingDates);
-
     return createMarkers(sortSightingsByDate, generateDateIcons, [
       redBlur,
       greenBlur,
