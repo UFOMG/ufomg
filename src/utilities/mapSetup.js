@@ -39,6 +39,8 @@ export const generateEventIcons = (eventType, images) => {
       return images[0];
     case "encounter":
       return images[1];
+    case "contact":
+      return images[1];
     case "abduction":
       return images[2];
     default:
@@ -58,15 +60,17 @@ export const generateDateIcons = (date, images) => {
     today.getMonth(),
     today.getDate() - today.getDay() - 30
   );
-  switch (date) {
-    case date >= oneWeekAgo:
-      return images[0];
-    case date < oneWeekAgo && date > oneMonthAgo:
-      return images[1];
-    case date <= oneMonthAgo:
-      return images[2];
-    default:
-      return images[0];
+
+  const sightingDate = new Date(date);
+
+  if (sightingDate >= oneWeekAgo) {
+    return images[0];
+  } else if (sightingDate < oneWeekAgo && sightingDate > oneMonthAgo) {
+    return images[1];
+  } else if (sightingDate <= oneMonthAgo) {
+    return images[2];
+  } else {
+    return images[0];
   }
 };
 

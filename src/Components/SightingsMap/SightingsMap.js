@@ -55,7 +55,7 @@ const SightingsMap = () => {
       blueBlur,
     ]);
   };
-
+  
   const addParsedDate = () => {
     return sightings.sightings.map((sighting) => {
       const seperateDate = sighting.created_at;
