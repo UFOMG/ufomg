@@ -55,3 +55,20 @@ Check it out on [Heroku](https://ufomfg.herokuapp.com)!
 
 ### Comment Page
 <img width="1400" alt="comment page" src="https://i.imgur.com/tquczOC.png">
+
+#### Contributors:
+
+- [Mike Flynn](https://github.com/mdflynn)
+
+<img src="https://avatars1.githubusercontent.com/u/64620860?s=460&u=22fbddd0d55029892d0c73c4b37808a36d5aa1bd&v=4" alt="Mike Flynn"
+ width="150" height="auto" />
+
+- [Peyton Jones](https://github.com/peytonjo)
+
+<img src="https://avatars.githubusercontent.com/u/59493784?s=460&u=1e1d906af2f8addb9837c778aec1777d6a19bc62&v=4" alt="Peyton Jones"
+ width="150" height="auto" />
+
+ - [Jordon Smith](https://github.com/jdxsmith)
+ 
+<img src="https://avatars.githubusercontent.com/u/67242223?s=460&u=f214130acf299e88d84a8c006e06eba8fb9e9f5a&v=4" alt="Shawn Truesdale"
+ width="150" height="auto" />
